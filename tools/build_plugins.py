@@ -106,7 +106,7 @@ def build_plugin(name, description, keywords, entries, kit_repo, upstream_licens
     with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as zf:
         for p in sorted(root.rglob("*")):
             if p.is_file():
-                zf.write(p, Path(name) / p.relative_to(root))
+                zf.write(p, p.relative_to(root))  # plugin root at the top of the zip
     one = dist / "skills" / name
     if one.exists():
         shutil.rmtree(one)
