@@ -10,6 +10,7 @@ Writes:
   _site/skills/<name>/SKILL.md              single file, references folded in
   _site/skills/<name>/<name>.zip            full skill folder, for the Claude app
   _site/skills/<name>/<name>.prompt.md      GitHub Copilot prompt file
+  _site/skills/<name>/<name>.md             one Markdown file for any AI model
   _site/skills/<name>/<name>.txt            paste into ChatGPT, Gemini or any chat
   _site/library.json                        the manifest, for anyone who wants the data
 
@@ -48,6 +49,9 @@ def write_skill_files(staged: Path, out: Path):
 
     (out / "SKILL.md").write_text(f"{front}{note}\n{full}", encoding="utf-8")
     (out / f"{name}.prompt.md").write_text(f'---\ndescription: "{desc}"\n---\n{note}\n{full}', encoding="utf-8")
+    (out / f"{name}.md").write_text(
+        f"# {name}\n\n> **Use these instructions for this whole conversation.** "
+        f"Apply them when: {meta['description']}\n{note}\n{full}", encoding="utf-8")
     (out / f"{name}.txt").write_text(
         f"Use these instructions for this whole conversation.\n"
         f"Apply them when: {meta['description']}\n{note}\n{full}", encoding="utf-8")

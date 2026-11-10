@@ -192,6 +192,12 @@ dialog#drawer::backdrop { background: rgba(10, 16, 29, 0.45); }
 .d-block { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .d-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .d-label-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.86rem; }
+.cp { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.cp-btn { text-align: left; }
+.cp-btn[disabled] { opacity: 0.55; cursor: wait; }
+.cp-btn.done { border-color: var(--accent); color: var(--accent); }
+.cp-btn small { display: block; font-size: 0.72rem; color: var(--muted); font-weight: 400; }
+.cp-fallback { width: 100%; min-height: 180px; font: 0.8rem var(--mono); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
 .dl { display: flex; flex-wrap: wrap; gap: 8px; }
 .dl a { font-size: 0.86rem; }
 .dl .btn small { display: block; font-size: 0.72rem; color: var(--muted); font-weight: 400; }
@@ -318,6 +324,16 @@ dialog#drawer::backdrop { background: rgba(10, 16, 29, 0.45); }
     <div class="d-block">
       <span class="d-label">Install just this skill</span>
       <div class="cmd"><code id="d-cmd"></code><button class="copy" id="d-cmd-copy">Copy</button></div>
+    </div>
+    <div class="d-block">
+      <span class="d-label">Copy the skill</span>
+      <div class="cp" id="d-cp">
+        <button class="btn cp-btn" id="cp-copilot" data-kind="copilot" disabled>Copy for GitHub Copilot<small>Save as .github/prompts/NAME.prompt.md</small></button>
+        <button class="btn cp-btn" id="cp-any" data-kind="any" disabled>Copy for any AI model<small>Paste into ChatGPT, Gemini, Claude…</small></button>
+        <button class="btn cp-btn" id="cp-skill" data-kind="skill" disabled>Copy SKILL.md<small>Claude Code / Claude skills format</small></button>
+      </div>
+      <p class="note" id="cp-msg">Loading the skill…</p>
+      <textarea id="cp-fallback" class="cp-fallback" readonly hidden aria-label="Skill text to copy"></textarea>
     </div>
     <div class="d-block" id="d-dl-wrap">
       <span class="d-label">Download</span>
@@ -1166,11 +1182,13 @@ function openSkill(slug, push = true) {
     [`${base}${s.slug}.zip`, "Claude app (.zip)", "Settings → Capabilities → Skills"],
     [`${base}SKILL.md`, "SKILL.md", "Claude Code, single file"],
     [`${base}${s.slug}.prompt.md`, "Copilot prompt", "Put in .github/prompts/"],
+    [`${base}${s.slug}.md`, "Any AI model (.md)", "One Markdown file, any assistant"],
     [`${base}${s.slug}.txt`, "Any chat (.txt)", "ChatGPT, Gemini, others"],
   ].map(([href, label, hint]) => `<a class="btn dl-file" href="${href}" download>${label}<small>${hint}</small></a>`).join("")
     + (s.hasTools ? `<p class="note">The single-file versions leave out this skill's Python tools. Use the .zip or the installer for the full skill.</p>` : "")
     : `<p class="note">This skill lives in its author's repository and isn't re-hosted here. Use the install command above, or <a href="${s.sourceUrl}" target="_blank" rel="noopener">get it from ${esc(s.author)}</a>.</p>`;
   $("d-md").innerHTML = '<p class="note">Loading…</p>'; $("d-dl-msg").hidden = true;
+  prepareCopies(s);
   loadMd(s).then(t => { if ($("d-title").textContent === s.slug) $("d-md").innerHTML = renderMd(t); })
     .catch(() => { $("d-md").innerHTML = `<p class="note">Couldn't load the skill here. <a href="${s.sourceUrl}" target="_blank" rel="noopener">Read it on GitHub ↗</a></p>`; });
   if (!drawer.open) drawer.showModal();
@@ -1208,6 +1226,54 @@ $("d-dl").addEventListener("click", async e => {
   } catch (err) {
     msg.textContent = err && err.code === "declined" ? "Download cancelled." : "Couldn't save the file. Try again, or use View source.";
   }
+});
+/* Copy the skill: texts are fetched when the panel opens, so the click copies right away. */
+const copyTexts = {};
+function splitSkill(text) {
+  const m = text.match(/^---\n([\s\S]*?)\n---\n?/);
+  const front = m ? m[1] : "";
+  const body = m ? text.slice(m[0].length).replace(/^\n+/, "") : text;
+  const dm = front.match(/^description:\s*(.*(?:\n[ \t]+.*)*)/m);
+  const desc = dm ? dm[1].replace(/^[>|]-?\s*/, "").replace(/\s+/g, " ").trim().replace(/^["']|["']$/g, "") : "";
+  return { body, desc };
+}
+const anyModelMd = (slug, desc, body) => `# ${slug}\n\n> **Use these instructions for this whole conversation.** Apply them when: ${desc}\n\n${body.trim()}\n`;
+const copilotMd = (desc, body) => `---\ndescription: "${desc.replace(/"/g, "'")}"\n---\n\n${body.trim()}\n`;
+async function prepareCopies(s) {
+  const btns = document.querySelectorAll(".cp-btn"), msg = $("cp-msg");
+  btns.forEach(b => { b.disabled = true; b.classList.remove("done"); b.firstChild.textContent = CP_LABELS[b.dataset.kind]; });
+  $("cp-copilot").querySelector("small").textContent = `Save as .github/prompts/${s.slug}.prompt.md`;
+  $("cp-fallback").hidden = true; msg.hidden = false; msg.textContent = "Loading the skill…";
+  try {
+    if (!copyTexts[s.slug]) {
+      const skill = await loadMd(s);
+      const { body, desc } = splitSkill(skill);
+      let copilot = copilotMd(desc, body), any = anyModelMd(s.slug, desc, body), full = skill;
+      if (s.inRepo) {  // the hosted files fold in the skill's reference files
+        const get = f => fetch(`skills/${s.slug}/${f}`).then(r => r.ok ? r.text() : null).catch(() => null);
+        const [c, a, k] = await Promise.all([get(`${s.slug}.prompt.md`), get(`${s.slug}.md`), get("SKILL.md")]);
+        copilot = c || copilot; any = a || any; full = k || full;
+      }
+      copyTexts[s.slug] = { copilot, any, skill: full };
+    }
+    if ($("d-title").textContent !== s.slug) return;
+    btns.forEach(b => b.disabled = false);
+    msg.textContent = s.inRepo ? "Includes the skill's reference material. Paste it as your first message, or save it as a file."
+      : "Copies the skill's main file from its author. Its reference files, if any, are on GitHub (View source).";
+  } catch (e) {
+    if ($("d-title").textContent === s.slug) msg.innerHTML = `Couldn't load the skill here. <a href="${s.sourceUrl}" target="_blank" rel="noopener">Copy it from GitHub ↗</a>`;
+  }
+}
+const CP_LABELS = { copilot: "Copy for GitHub Copilot", any: "Copy for any AI model", skill: "Copy SKILL.md" };
+$("d-cp").addEventListener("click", e => {
+  const b = e.target.closest(".cp-btn"); if (!b || b.disabled) return;
+  const t = copyTexts[$("d-title").textContent]; if (!t) return;
+  const text = t[b.dataset.kind], label = b.firstChild;
+  const ok = () => { label.textContent = "Copied ✓"; b.classList.add("done"); $("cp-fallback").hidden = true;
+    setTimeout(() => { label.textContent = CP_LABELS[b.dataset.kind]; b.classList.remove("done"); }, 1800); };
+  const fallback = () => { const ta = $("cp-fallback"); ta.value = text; ta.hidden = false; ta.focus(); ta.select();
+    $("cp-msg").textContent = "Your browser blocked copying. The text is selected below: press Ctrl+C (⌘C on Mac)."; };
+  try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (err) { fallback(); }
 });
 function closeSkill() { if (drawer.open) drawer.close(); }
 drawer.addEventListener("close", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} });
