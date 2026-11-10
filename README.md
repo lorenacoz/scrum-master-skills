@@ -60,6 +60,33 @@ other chat tools, and to pick skills, see [LIBRARY.md](LIBRARY.md).
 
 Start at [lab/LAB-GUIDE.md](lab/LAB-GUIDE.md).
 
+## Install as Claude plugins
+
+This repo is a Claude plugin marketplace with two plugins:
+
+| Plugin | Skills |
+|---|---|
+| `project-manager-skills` | 40 skills for project managers, by phase (same as the playbook) |
+| `scrum-master-skills` | 41 skills for Scrum Masters: every Scrum and SAFe event, team, risks, backlog, metrics |
+
+**Claude Code:** run these two commands inside Claude Code:
+
+```
+/plugin marketplace add lorenacoz/scrum-master-skills
+/plugin install project-manager-skills@scrum-master-skills
+```
+
+To get the Scrum Master plugin as well, also run `/plugin install scrum-master-skills@scrum-master-skills`.
+
+**Claude app (claude.ai, desktop):** if your app lets you add plugins, add the
+marketplace `lorenacoz/scrum-master-skills`, or upload
+[`dist/project-manager-skills.zip`](dist/project-manager-skills.zip). Otherwise upload single
+skills from [`dist/skills/`](dist/skills/) in **Settings → Capabilities → Skills**.
+
+Three library skills (`scrum-of-scrums`, `scrum-role-coach`, `agile-scrum-guide`) aren't in the
+plugins because their authors gave no license; `tools/install_library.py` still installs them.
+Rebuild the plugins with `python3 tools/build_plugins.py`.
+
 ## Project Manager AI Playbook
 
 [`playbook/`](playbook/PM-PLAYBOOK.md) holds 40 skills for project managers,

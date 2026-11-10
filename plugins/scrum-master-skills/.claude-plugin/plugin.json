@@ -1,0 +1,21 @@
+{
+  "name": "scrum-master-skills",
+  "version": "1.0.0",
+  "description": "AI skills for Scrum Masters: every Scrum and SAFe event, facilitation, team conflict, risks, backlog, metrics and stakeholders.",
+  "author": {
+    "name": "lorenacoz",
+    "url": "https://github.com/lorenacoz"
+  },
+  "homepage": "https://github.com/lorenacoz/scrum-master-skills",
+  "repository": "https://github.com/lorenacoz/scrum-master-skills",
+  "license": "SEE LICENSE IN LICENSES.md",
+  "keywords": [
+    "scrum",
+    "agile",
+    "safe",
+    "scrum-master",
+    "retrospective",
+    "sprint-planning",
+    "facilitation"
+  ]
+}

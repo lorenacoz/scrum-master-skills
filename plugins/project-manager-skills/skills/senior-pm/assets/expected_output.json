@@ -1,0 +1,98 @@
+{
+  "description": "Key results from the three portfolio scripts on sample_project_data.json, evaluated as of portfolio_metadata.generated_on (2025-02-15). Regenerate by running each script with --format json.",
+  "as_of": "2025-02-15",
+  "project_health_dashboard": {
+    "summary": {
+      "total_projects": 4,
+      "active_projects": 3,
+      "portfolio_average_score": 92.9,
+      "portfolio_median_score": 90.7,
+      "projects_needing_attention": 0,
+      "critical_projects": 0,
+      "as_of": "2025-02-15"
+    },
+    "projects": [
+      {
+        "name": "Mobile Banking App v3.0",
+        "composite_score": 90.4,
+        "rag_status": "green",
+        "dimension_scores": {
+          "timeline": 96,
+          "budget": 100,
+          "scope": 91,
+          "risk": 72,
+          "quality": 80
+        }
+      },
+      {
+        "name": "Cloud Infrastructure Migration",
+        "composite_score": 90.7,
+        "rag_status": "green",
+        "dimension_scores": {
+          "timeline": 100,
+          "budget": 84,
+          "scope": 96,
+          "risk": 91,
+          "quality": 82
+        }
+      },
+      {
+        "name": "AI-Powered Analytics Dashboard",
+        "composite_score": 97.6,
+        "rag_status": "green",
+        "dimension_scores": {
+          "timeline": 100,
+          "budget": 100,
+          "scope": 100,
+          "risk": 81
+        }
+      },
+      {
+        "name": "Customer Portal Redesign",
+        "composite_score": 92.2,
+        "rag_status": "green",
+        "dimension_scores": {
+          "timeline": 93,
+          "budget": 86,
+          "scope": 93,
+          "risk": 100,
+          "quality": 94
+        }
+      }
+    ],
+    "recommendations": [
+      "Focus improvement efforts on quality - weakest portfolio dimension."
+    ]
+  },
+  "resource_capacity_planner": {
+    "summary": {
+      "total_resources": 6,
+      "total_projects": 4,
+      "active_projects": 2,
+      "total_capacity_hours": 127.2,
+      "total_demand_hours": 496.89,
+      "overall_utilization": 0.87
+    },
+    "recommendations": [
+      "URGENT: Redistribute workload for 1 critically over-allocated resources to prevent burnout.",
+      "Capacity shortfall of 306 hours/week detected. Consider hiring or timeline adjustments.",
+      "Low allocation efficiency detected. Review skill-to-project matching and consider reallocation."
+    ]
+  },
+  "risk_matrix_analyzer": {
+    "summary": {
+      "total_risks": 6,
+      "active_risks": 5,
+      "closed_risks": 1,
+      "critical_risks": 0,
+      "high_risks": 1,
+      "total_risk_exposure": 59.2,
+      "average_risk_score": 11.84,
+      "overdue_risks": 0,
+      "as_of": "2025-02-15"
+    },
+    "recommendations": [
+      "Focus mitigation efforts on financial risks - highest concentration of risk exposure."
+    ]
+  }
+}
