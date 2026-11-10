@@ -322,6 +322,7 @@ dialog#drawer::backdrop { background: rgba(10, 16, 29, 0.45); }
     <div class="d-block" id="d-dl-wrap">
       <span class="d-label">Download</span>
       <div class="dl" id="d-dl"></div>
+      <p class="note" id="d-dl-msg" hidden></p>
     </div>
     <div class="try"><div class="try-label"><span>Try this</span><button class="copy" id="d-try-copy">Copy</button></div><q id="d-try"></q></div>
     <div class="d-block">
@@ -1166,16 +1167,48 @@ function openSkill(slug, push = true) {
     [`${base}SKILL.md`, "SKILL.md", "Claude Code, single file"],
     [`${base}${s.slug}.prompt.md`, "Copilot prompt", "Put in .github/prompts/"],
     [`${base}${s.slug}.txt`, "Any chat (.txt)", "ChatGPT, Gemini, others"],
-  ].map(([href, label, hint]) => `<a class="btn" href="${href}" download>${label}<small>${hint}</small></a>`).join("")
+  ].map(([href, label, hint]) => `<a class="btn dl-file" href="${href}" download>${label}<small>${hint}</small></a>`).join("")
     + (s.hasTools ? `<p class="note">The single-file versions leave out this skill's Python tools. Use the .zip or the installer for the full skill.</p>` : "")
     : `<p class="note">This skill lives in its author's repository and isn't re-hosted here. Use the install command above, or <a href="${s.sourceUrl}" target="_blank" rel="noopener">get it from ${esc(s.author)}</a>.</p>`;
-  $("d-md").innerHTML = '<p class="note">Loading…</p>';
+  $("d-md").innerHTML = '<p class="note">Loading…</p>'; $("d-dl-msg").hidden = true;
   loadMd(s).then(t => { if ($("d-title").textContent === s.slug) $("d-md").innerHTML = renderMd(t); })
     .catch(() => { $("d-md").innerHTML = `<p class="note">Couldn't load the skill here. <a href="${s.sourceUrl}" target="_blank" rel="noopener">Read it on GitHub ↗</a></p>`; });
   if (!drawer.open) drawer.showModal();
   $("d-close").focus();
-  if (push) try { history.replaceState(null, "", "#/" + s.slug); } catch (e) {}
+  if (push) try { history.replaceState(null, "", "#" + s.slug); } catch (e) {}
 }
+/* Inside the Claude artifact viewer, plain download links are blocked: hand the file to its save prompt instead. */
+let savePromise = null;
+const saver = () => savePromise || (savePromise = (window.claude && window.claude.use) ? window.claude.use("downloads").catch(() => null) : Promise.resolve(null));
+// Fetch a download; a .zip that isn't hosted (the artifact copy) is built from skill-bundle.json with JSZip.
+let bundlePromise = null;
+const loadScript = src => new Promise((ok, no) => { const t = document.createElement("script"); t.src = src; t.onload = ok; t.onerror = no; document.head.appendChild(t); });
+async function fileFor(href) {
+  const r = await fetch(href).catch(() => null);
+  if (r && r.ok) return r.blob();
+  if (!href.endsWith(".zip")) throw new Error("missing");
+  const slug = href.split("/")[1];
+  bundlePromise = bundlePromise || fetch("skill-bundle.json").then(x => { if (!x.ok) throw new Error("no bundle"); return x.json(); });
+  const [bundle] = await Promise.all([bundlePromise, window.JSZip ? null : loadScript("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js")]);
+  const zip = new JSZip();
+  Object.entries(bundle[slug] || {}).forEach(([path, text]) => zip.file(`${slug}/${path}`, text));
+  return zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+}
+$("d-dl").addEventListener("click", async e => {
+  const a = e.target.closest("a.dl-file"); if (!a || !(window.claude && window.claude.use)) return;
+  e.preventDefault();
+  const msg = $("d-dl-msg"); msg.hidden = false; msg.textContent = "Preparing the file…";
+  try {
+    const dl = await saver();
+    if (!dl) { msg.textContent = "Downloads aren't available in this view. Open the skill on GitHub with View source."; return; }
+    const blob = await fileFor(a.getAttribute("href"));
+    const name = a.getAttribute("href").split("/").pop();
+    await dl.save({ filename: name === "SKILL.md" ? `${$("d-title").textContent}-SKILL.md` : name, data: blob });
+    msg.textContent = `Saved ${name}.`;
+  } catch (err) {
+    msg.textContent = err && err.code === "declined" ? "Download cancelled." : "Couldn't save the file. Try again, or use View source.";
+  }
+});
 function closeSkill() { if (drawer.open) drawer.close(); }
 drawer.addEventListener("close", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} });
 $("d-close").addEventListener("click", closeSkill);
@@ -1184,7 +1217,7 @@ document.getElementById("cats").addEventListener("click", e => {
   if (e.target.closest(".try .copy")) return;
   const c = e.target.closest(".card"); if (c) openSkill(c.id.replace("skill-", ""));
 });
-const fromHash = () => { const m = location.hash.match(/^#\/([\w-]+)$/); if (m) openSkill(m[1], false); };
+const fromHash = () => { const m = location.hash.match(/^#\/?([\w-]+)$/); if (m && SKILLS.some(x => x.slug === m[1])) openSkill(m[1], false); };
 window.addEventListener("hashchange", fromHash);
 
 const tabs = document.getElementById("tabs"), panels = document.getElementById("panels");
