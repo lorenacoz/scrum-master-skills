@@ -12,7 +12,7 @@ From a copy of the kit:
     python3 tools/install_library.py --with-optional  # include optional skills
 
 Without downloading anything first (fetches the kit from GitHub):
-    curl -fsSL https://raw.githubusercontent.com/dstevenson1981/scrum-master-skills/main/tools/install_library.py | python3 - [options]
+    curl -fsSL https://raw.githubusercontent.com/lorenacoz/scrum-master-skills/main/tools/install_library.py | python3 - [options]
 
 Skills in the kit's skills/ folder come from the kit itself. Others download
 from each author's GitHub repo at the exact commit listed in library.json, so
@@ -30,7 +30,7 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-KIT_REPO = "dstevenson1981/scrum-master-skills"
+KIT_REPO = "lorenacoz/scrum-master-skills"
 KIT_REF = "main"
 UA = {"User-Agent": "skill-library-installer"}
 

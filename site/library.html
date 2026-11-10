@@ -1,4 +1,10 @@
-<title>Scrum Master Skill Library</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scrum Master AI Skills Library</title>
+<meta name="description" content="Free AI skills for Scrum Masters: every Scrum and SAFe event, facilitation, team conflict, risks, backlog, metrics and stakeholders. Use them in Claude, GitHub Copilot, ChatGPT or any AI assistant.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,14 +161,66 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   .cycle a:nth-child(-n+2) { border-top: 0; }
   .deck { grid-template-columns: 1fr; }
 }
+/* hero buttons */
+.hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.btn { font: 500 0.92rem var(--sans); text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 9px 16px; cursor: pointer; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { filter: brightness(1.06); }
+/* search + level */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.search { flex: 1 1 320px; min-width: 0; }
+.search input { width: 100%; font: 400 0.95rem var(--sans); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.search input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.levels { display: flex; gap: 6px; flex-wrap: wrap; }
+.empty { color: var(--muted); }
+/* card actions */
+.card { cursor: pointer; transition: border-color .15s, transform .15s; }
+.card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.card-actions { display: flex; gap: 8px; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--muted); }
+.open { font: 500 0.82rem var(--sans); color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; }
+/* drawer */
+dialog#drawer { width: min(760px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0 0 0 auto; padding: 0; border: 0; border-left: 1px solid var(--line); background: var(--bg); color: var(--body); display: none; flex-direction: column; }
+dialog#drawer[open] { display: flex; }
+dialog#drawer::backdrop { background: rgba(10, 16, 29, 0.45); }
+.d-head { padding: 22px 24px 18px; border-bottom: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; gap: 10px; }
+.d-title-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.d-title-row h2 { font-size: 1.3rem; font-family: var(--mono); letter-spacing: -0.01em; }
+.d-close { font-size: 1.6rem; line-height: 1; color: var(--muted); background: none; border: 0; cursor: pointer; padding: 2px 8px; }
+.d-body { padding: 20px 24px 40px; overflow-y: auto; display: flex; flex-direction: column; gap: 22px; }
+.d-block { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.d-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.d-label-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.86rem; }
+.dl { display: flex; flex-wrap: wrap; gap: 8px; }
+.dl a { font-size: 0.86rem; }
+.dl .btn small { display: block; font-size: 0.72rem; color: var(--muted); font-weight: 400; }
+.md { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; font-size: 0.93rem; overflow-wrap: anywhere; }
+.md h1, .md h2, .md h3, .md h4 { margin: 1.2em 0 0.4em; }
+.md h1 { font-size: 1.45rem; } .md h2 { font-size: 1.2rem; } .md h3 { font-size: 1.02rem; }
+.md > :first-child { margin-top: 0; }
+.md p, .md ul, .md ol, .md table, .md pre, .md blockquote { margin: 0 0 0.8em; }
+.md ul, .md ol { padding-left: 1.3em; }
+.md pre { background: var(--code-bg); color: var(--code-fg); padding: 12px 14px; border-radius: 8px; overflow-x: auto; }
+.md :not(pre) > code { background: var(--tint); padding: 1px 5px; border-radius: 4px; color: var(--ink); }
+.md table { min-width: 0; display: block; overflow-x: auto; }
+.md blockquote { border-left: 3px solid var(--accent); padding-left: 12px; color: var(--muted); }
+.md pre.raw { background: none; color: var(--body); padding: 0; white-space: pre-wrap; font-size: 0.86rem; }
+.md .front { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); background: var(--tint); border-radius: 8px; padding: 10px 12px; white-space: pre-wrap; }
+@media (max-width: 560px) { .d-head, .d-body { padding-left: 16px; padding-right: 16px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 
+</head>
+<body>
 <div class="wrap">
   <header>
-    <span class="eyebrow">Agile36 · Scrum Master class</span>
-    <h1>Scrum Master Skill Library</h1>
-    <p class="lede">AI skills for the work a Scrum Master does every sprint: every Scrum and SAFe event, team dynamics and facilitation, risks and impediments, backlog and estimation, metrics, and stakeholders. Install once, then use them in Claude, GitHub Copilot, ChatGPT or any other assistant.</p>
+    <span class="eyebrow" id="site-eyebrow">Free · Open source · Works in any AI assistant</span>
+    <h1 id="site-title">Scrum Master AI Skills Library</h1>
+    <p class="lede" id="site-tagline">Free AI skills for Scrum Masters: every Scrum and SAFe event, facilitation, team conflict, risks, backlog, metrics and stakeholders. Use them in Claude, GitHub Copilot, ChatGPT or any AI assistant.</p>
+    <div class="hero-cta"><a class="btn primary" href="#skills-h">Browse the skills</a><a class="btn" href="#inst-h">Install in one command</a><a class="btn" id="gh-link" href="#" target="_blank" rel="noopener">View on GitHub</a></div>
     <div class="facts" id="facts"></div>
   </header>
 
@@ -191,9 +249,14 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
     <div class="section-head">
       <span class="eyebrow">The library</span>
       <h2 id="skills-h">Every skill, by job</h2>
-      <p>Each card ends with a prompt you can paste to try it. Use a made-up team, never real names or company data.</p>
+      <p>Open any card to read the full skill, download it for your tool, or copy a prompt to try it. Use a made-up team, never real names or company data.</p>
+    </div>
+    <div class="toolbar">
+      <label class="search"><span class="sr">Search skills</span><input id="q" type="search" placeholder="Search skills: retro, conflict, velocity, PI Planning…" autocomplete="off"></label>
+      <div class="levels" id="levels" role="group" aria-label="Filter by level"></div>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+    <p class="empty" id="empty" hidden>No skills match. Try another word or clear the filters.</p>
     <div id="cats" style="display:flex; flex-direction:column; gap:36px;"></div>
   </section>
 
@@ -213,7 +276,7 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
     <div class="section-head">
       <span class="eyebrow">Install</span>
       <h2 id="inst-h">Install in the tool you use</h2>
-      <p>Paste one command into a terminal. Nothing to download first, no GitHub account needed. No terminal? Your instructor will hand out the files.</p>
+      <p>Paste one command into a terminal. Nothing to download first, no GitHub account needed. No terminal? Open any skill above and download its files directly.</p>
     </div>
     <div>
       <div class="tabs" role="tablist" id="tabs"></div>
@@ -233,7 +296,7 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
     <div class="section-head">
       <span class="eyebrow">Credits</span>
       <h2 id="cred-h">Where each skill comes from</h2>
-      <p>Agile36 wrote the skills marked Agile36 and shares them, with the lab and tools, under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>: reuse and adapt them with credit. MIT-licensed skills ship in the Agile36 repo with their licenses. All others download from their author's repository at the version Agile36 reviewed.</p>
+      <p>Skills credited to Agile36 are © Agile36 and shared under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. MIT-licensed skills ship in this repo with their licenses. All others download from their author's repository at the exact commit that was reviewed, and are never re-hosted here.</p>
     </div>
     <div class="table-wrap">
       <table>
@@ -244,6 +307,29 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   </section>
 
   <footer id="footer"></footer>
+<dialog id="drawer" aria-labelledby="d-title">
+  <div class="d-head">
+    <div class="d-title-row"><h2 id="d-title" class="slug"></h2><button class="d-close" id="d-close" aria-label="Close">×</button></div>
+    <div class="chips" id="d-chips"></div>
+    <p class="job" id="d-job"></p>
+    <p class="needs" id="d-needs"></p>
+  </div>
+  <div class="d-body">
+    <div class="d-block">
+      <span class="d-label">Install just this skill</span>
+      <div class="cmd"><code id="d-cmd"></code><button class="copy" id="d-cmd-copy">Copy</button></div>
+    </div>
+    <div class="d-block" id="d-dl-wrap">
+      <span class="d-label">Download</span>
+      <div class="dl" id="d-dl"></div>
+    </div>
+    <div class="try"><div class="try-label"><span>Try this</span><button class="copy" id="d-try-copy">Copy</button></div><q id="d-try"></q></div>
+    <div class="d-block">
+      <div class="d-label-row"><span class="d-label">SKILL.md</span><a id="d-src" target="_blank" rel="noopener">View source ↗</a></div>
+      <article class="md" id="d-md"><p class="note">Loading…</p></article>
+    </div>
+  </div>
+</dialog>
 </div>
 
 <script>
@@ -257,9 +343,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional plan audit needs Python 3)",
   "try": "Plan Sprint 4: 2 weeks, 6 developers, one on leave Thursday and Friday. Our last three velocities were 21, 18 and 24.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/sprint-plan",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/sprint-plan/SKILL.md"
  },
  {
   "slug": "daily-scrum",
@@ -270,9 +359,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Our daily standup has turned into a 40-minute status report to our manager. How do I fix it?",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/daily-scrum",
+  "rawSkill": "skills/daily-scrum/SKILL.md"
  },
  {
   "slug": "sprint-review",
@@ -283,9 +375,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Plan a 60-minute Sprint Review. Two of five items are Done and our stakeholders usually skip it.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/sprint-review",
+  "rawSkill": "skills/sprint-review/SKILL.md"
  },
  {
   "slug": "scrum-retrospective",
@@ -296,9 +391,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "The same three complaints come up every retro and nothing changes. Plan our next retro.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/scrum-retrospective",
+  "rawSkill": "skills/scrum-retrospective/SKILL.md"
  },
  {
   "slug": "backlog-refinement",
@@ -309,9 +407,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional scorer needs Python 3)",
   "try": "Refine this story: 'As an admin I want a reporting dashboard so I can see everything.'",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/backlog-refinement",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/backlog-refinement/SKILL.md"
  },
  {
   "slug": "scrum-of-scrums",
@@ -322,9 +423,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "We have 3 teams on one mobile app and they keep breaking each other's releases. How do I set up a Scrum of Scrums?",
   "author": "skills-on-ai/skills-on-ai",
-  "repo": "https://github.com/skills-on-ai/skills-on-ai",
   "license": "none stated",
-  "inRepo": false
+  "repo": "https://github.com/skills-on-ai/skills-on-ai",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/skills-on-ai/skills-on-ai/tree/e8f587d8a58a3b6936f69e10a6c8ef494fbc7dd5/skills/scrum-of-scrums",
+  "rawSkill": "https://raw.githubusercontent.com/skills-on-ai/skills-on-ai/e8f587d8a58a3b6936f69e10a6c8ef494fbc7dd5/skills/scrum-of-scrums/SKILL.md"
  },
  {
   "slug": "sprint-retrospective",
@@ -335,9 +439,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Python 3 + a git repository",
   "try": "(inside a git repo) Build a retro data pack for the last two weeks.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/sprint-retrospective",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/sprint-retrospective/SKILL.md"
  },
  {
   "slug": "pi-planning",
@@ -348,9 +455,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "PI Planning is in two weeks and it's my team's first. What do we need ready?",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/pi-planning",
+  "rawSkill": "skills/pi-planning/SKILL.md"
  },
  {
   "slug": "art-sync",
@@ -361,9 +471,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Our ART Sync has turned into a 90-minute status meeting. How do I fix it, and what should I bring?",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/art-sync",
+  "rawSkill": "skills/art-sync/SKILL.md"
  },
  {
   "slug": "inspect-and-adapt",
@@ -374,9 +487,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Our team planned 40 business value points and achieved 29. Calculate our predictability and prep the problem-solving workshop.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/inspect-and-adapt",
+  "rawSkill": "skills/inspect-and-adapt/SKILL.md"
  },
  {
   "slug": "scrum-role-coach",
@@ -387,9 +503,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "I'm joining a new team as Scrum Master next week. What should my first two weeks look like?",
   "author": "byersboi/claude-agile-skills",
-  "repo": "https://github.com/byersboi/claude-agile-skills",
   "license": "none stated",
-  "inRepo": false
+  "repo": "https://github.com/byersboi/claude-agile-skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/byersboi/claude-agile-skills/tree/a18f72620d3803dcc23551d265af5dfa034ed064/scrum-master",
+  "rawSkill": "https://raw.githubusercontent.com/byersboi/claude-agile-skills/a18f72620d3803dcc23551d265af5dfa034ed064/scrum-master/SKILL.md"
  },
  {
   "slug": "agile-coach",
@@ -400,9 +519,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional scorers need Python 3)",
   "try": "Our org runs 'Scrum' but nothing has changed in a year. Assess our maturity and suggest a 90-day coaching plan.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/agile-coach",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/agile-coach/SKILL.md"
  },
  {
   "slug": "problem-solver",
@@ -413,9 +535,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "A project folder (keeps notes)",
   "try": "Our team misses its Sprint Goal almost every sprint and nobody agrees why. Help me diagnose it.",
   "author": "Hieu T. Luu",
-  "repo": null,
   "license": "MIT (Hieu T. Luu)",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/problem-solver",
+  "rawSkill": "skills/problem-solver/SKILL.md"
  },
  {
   "slug": "scrum-workflow",
@@ -426,9 +551,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "A project folder (keeps notes in _project/scrum-master/)",
   "try": "Adopt this team: 'Mobile Squad', 2-week sprints. Set up the workspace.",
   "author": "Hieu T. Luu",
-  "repo": null,
   "license": "MIT (Hieu T. Luu)",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": true,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/scrum-workflow",
+  "rawSkill": "skills/scrum-workflow/SKILL.md"
  },
  {
   "slug": "working-agreements",
@@ -439,9 +567,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "We're a brand-new team of 7 starting Monday. Plan a 90-minute chartering session.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/working-agreements",
+  "rawSkill": "skills/working-agreements/SKILL.md"
  },
  {
   "slug": "team-conflict",
@@ -452,9 +583,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Two senior developers argue in every refinement and the rest of the team goes quiet. How do I handle it?",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/team-conflict",
+  "rawSkill": "skills/team-conflict/SKILL.md"
  },
  {
   "slug": "facilitation-toolkit",
@@ -465,9 +599,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "The same two people dominate every meeting. Give me a technique for our next refinement.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/facilitation-toolkit",
+  "rawSkill": "skills/facilitation-toolkit/SKILL.md"
  },
  {
   "slug": "team-health-check",
@@ -478,9 +615,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Morale feels low since the reorg. Help me run a health check with my team.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/team-health-check",
+  "rawSkill": "skills/team-health-check/SKILL.md"
  },
  {
   "slug": "remote-facilitation",
@@ -491,9 +631,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Half my team is in the office and half is remote, and the remote people never speak. Fix our retro.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/remote-facilitation",
+  "rawSkill": "skills/remote-facilitation/SKILL.md"
  },
  {
   "slug": "impediment-log",
@@ -504,9 +647,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "We've been blocked 4 days waiting on the platform team for a staging environment. Log it and help me escalate.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/impediment-log",
+  "rawSkill": "skills/impediment-log/SKILL.md"
  },
  {
   "slug": "pre-mortem",
@@ -517,9 +663,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional sorter needs Python 3)",
   "try": "We launch the new checkout in 3 weeks. Run a pre-mortem with me.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/discovery/pre-mortem",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/discovery/pre-mortem/SKILL.md"
  },
  {
   "slug": "post-mortem",
@@ -530,9 +679,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Our release last Friday took the app down for 2 hours. Help me run a blameless post-mortem.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/post-mortem",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/post-mortem/SKILL.md"
  },
  {
   "slug": "dependency-map",
@@ -543,9 +695,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional graph tool needs Python 3)",
   "try": "Three teams depend on each other for the Q3 release. Map the dependencies and show the riskiest ones.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/dependency-map",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/dependency-map/SKILL.md"
  },
  {
   "slug": "project-manager",
@@ -556,9 +711,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "A project folder (keeps notes in _project/)",
   "try": "Set up a risk register for our payments migration and add the top five risks.",
   "author": "Hieu T. Luu",
-  "repo": null,
   "license": "MIT (Hieu T. Luu)",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": true,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/project-manager",
+  "rawSkill": "skills/project-manager/SKILL.md"
  },
  {
   "slug": "protect-the-sprint",
@@ -569,9 +727,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "A VP just asked two of my developers to drop everything for an urgent report. Help me respond.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/protect-the-sprint",
+  "rawSkill": "skills/protect-the-sprint/SKILL.md"
  },
  {
   "slug": "planning-poker",
@@ -582,9 +743,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "One senior developer anchors every estimate. How should I run planning poker?",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/planning-poker",
+  "rawSkill": "skills/planning-poker/SKILL.md"
  },
  {
   "slug": "story-splitting",
@@ -595,9 +759,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Split this story: 'Users can pay by card, PayPal or invoice, with refunds.'",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/story-splitting",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/story-splitting/SKILL.md"
  },
  {
   "slug": "story-mapping",
@@ -608,9 +775,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Build a story map for a mobile app's first-time onboarding and draw the MVP line.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/story-mapping",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/story-mapping/SKILL.md"
  },
  {
   "slug": "agile-product-owner",
@@ -621,9 +791,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional story generator needs Python 3)",
   "try": "Write user stories with acceptance criteria for 'customers can save a card for later'.",
   "author": "Alireza Rezvani",
-  "repo": null,
   "license": "MIT (Alireza Rezvani)",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": true,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/agile-product-owner",
+  "rawSkill": "skills/agile-product-owner/SKILL.md"
  },
  {
   "slug": "prioritization-frameworks",
@@ -634,9 +807,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional scorer needs Python 3)",
   "try": "Help our Product Owner rank these 8 items with RICE. Ask me for what you need.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/prioritization-frameworks",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/prioritization-frameworks/SKILL.md"
  },
  {
   "slug": "scrum-analytics",
@@ -647,9 +823,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Python 3 + sprint data as JSON (sample included)",
   "try": "Run a velocity forecast on the sample sprint data and tell me what we can safely commit to next sprint.",
   "author": "Alireza Rezvani",
-  "repo": null,
   "license": "MIT (Alireza Rezvani)",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": true,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/scrum-analytics",
+  "rawSkill": "skills/scrum-analytics/SKILL.md"
  },
  {
   "slug": "cycle-time-analyzer",
@@ -660,9 +839,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Python 3 + an issue status export",
   "try": "Analyze the sample board data: where is work getting stuck?",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/cycle-time-analyzer",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/cycle-time-analyzer/SKILL.md"
  },
  {
   "slug": "brainstorm-okrs",
@@ -673,9 +855,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional validator needs Python 3)",
   "try": "Draft Q1 OKRs for a team whose main problem is slow releases.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/brainstorm-okrs",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/brainstorm-okrs/SKILL.md"
  },
  {
   "slug": "metrics-conversation",
@@ -686,9 +871,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "My director wants to rank our 4 teams by velocity every month. Prepare me for that conversation.",
   "author": "Agile36",
-  "repo": null,
   "license": "CC BY 4.0",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/metrics-conversation",
+  "rawSkill": "skills/metrics-conversation/SKILL.md"
  },
  {
   "slug": "stakeholder-map",
@@ -699,9 +887,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional analyzer needs Python 3)",
   "try": "Map the stakeholders for our billing rollout. The finance director is skeptical.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/stakeholder-map",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/stakeholder-map/SKILL.md"
  },
  {
   "slug": "status-update-generator",
@@ -712,9 +903,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional generator needs Python 3)",
   "try": "Write this week's status update for our sponsor. We're yellow: one blocker, two risks.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/status-update-generator",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/status-update-generator/SKILL.md"
  },
  {
   "slug": "team-communications",
@@ -725,9 +919,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Write a short update to leadership: we're moving from 3-week to 2-week sprints next month.",
   "author": "Alireza Rezvani",
-  "repo": null,
   "license": "MIT (Alireza Rezvani)",
-  "inRepo": true
+  "repo": null,
+  "inRepo": true,
+  "hasTools": false,
+  "sourceUrl": "https://github.com/lorenacoz/scrum-master-skills/tree/main/skills/team-communications",
+  "rawSkill": "skills/team-communications/SKILL.md"
  },
  {
   "slug": "summarize-meeting",
@@ -738,9 +935,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Here are my notes from Sprint Planning. Summarize decisions and action items. [paste notes]",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/summarize-meeting",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/summarize-meeting/SKILL.md"
  },
  {
   "slug": "daci-framework",
@@ -751,9 +951,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Nobody can decide whether we adopt Kanban for our support team. Set up a DACI for it.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/daci-framework",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/daci-framework/SKILL.md"
  },
  {
   "slug": "jira-expert",
@@ -764,9 +967,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional audit tools need Python 3 + a Jira export)",
   "try": "Write a JQL filter for everything in the current sprint that's been In Progress for more than 3 days.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/jira-expert",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/jira-expert/SKILL.md"
  },
  {
   "slug": "program-manager",
@@ -777,9 +983,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional tools need Python 3)",
   "try": "We're starting a 4-team program to replace our billing system. Draft the charter and governance cadence.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/program-manager",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/program-manager/SKILL.md"
  },
  {
   "slug": "quarterly-planning",
@@ -790,9 +999,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing (optional tools need Python 3)",
   "try": "Plan the kickoff and weekly check-in rhythm for next quarter's OKRs.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/quarterly-planning",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/project-management/execution/quarterly-planning/SKILL.md"
  },
  {
   "slug": "agile-scrum-guide",
@@ -803,9 +1015,12 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Nothing",
   "try": "Explain the difference between the Sprint Review and the Retrospective.",
   "author": "majiayu000/claude-skill-registry-data",
-  "repo": "https://github.com/majiayu000/claude-skill-registry-data",
   "license": "none stated",
-  "inRepo": false
+  "repo": "https://github.com/majiayu000/claude-skill-registry-data",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/majiayu000/claude-skill-registry-data/tree/cc56cf7098659d14a4db957181ae8a714fccd44c/data/agile-scrum",
+  "rawSkill": "https://raw.githubusercontent.com/majiayu000/claude-skill-registry-data/cc56cf7098659d14a4db957181ae8a714fccd44c/data/agile-scrum/SKILL.md"
  },
  {
   "slug": "skill-security-auditor",
@@ -816,13 +1031,17 @@ footer { font-size: 0.9rem; color: var(--muted); max-width: 72ch; display: flex;
   "needs": "Python 3",
   "try": "Audit the skill folder I just downloaded before I install it.",
   "author": "borghei/Claude-Skills",
-  "repo": "https://github.com/borghei/Claude-Skills",
   "license": "MIT + Commons Clause",
-  "inRepo": false
+  "repo": "https://github.com/borghei/Claude-Skills",
+  "inRepo": false,
+  "hasTools": null,
+  "sourceUrl": "https://github.com/borghei/Claude-Skills/tree/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/engineering/skill-security-auditor",
+  "rawSkill": "https://raw.githubusercontent.com/borghei/Claude-Skills/25bf86b89c6c1e63f433a5b65e8cfcb6cf0b7ad3/engineering/skill-security-auditor/SKILL.md"
  }
 ];
-const KIT_REPO = "dstevenson1981/scrum-master-skills";
-const ONE_LINER = "curl -fsSL https://raw.githubusercontent.com/dstevenson1981/scrum-master-skills/main/tools/install_library.py | python3 -";/*SKILLS-END*/
+const SITE = {"title": "Scrum Master AI Skills Library", "eyebrow": "Free · Open source · Works in any AI assistant", "tagline": "Free AI skills for Scrum Masters: every Scrum and SAFe event, facilitation, team conflict, risks, backlog, metrics and stakeholders. Use them in Claude, GitHub Copilot, ChatGPT or any AI assistant."};
+const KIT_REPO = "lorenacoz/scrum-master-skills";
+const ONE_LINER = "curl -fsSL https://raw.githubusercontent.com/lorenacoz/scrum-master-skills/main/tools/install_library.py | python3 -";/*SKILLS-END*/
 
 const TOOLS = [
   { id: "claude-code", name: "Claude Code", flag: "", then: "Start a new session. The skills load on their own when a request matches." },
@@ -830,13 +1049,18 @@ const TOOLS = [
   { id: "copilot", name: "GitHub Copilot", flag: " --target copilot", then: "Copy the generated .github folder into your repository." },
   { id: "any-chat", name: "ChatGPT, Gemini, others", flag: " --target plain", then: "Paste a .txt file as your first message, or save it as a custom GPT or Gem instruction." },
 ];
+const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const CATS = [...new Set(SKILLS.map(s => s.category))];
 const core = SKILLS.filter(s => !s.optional);
 
+if (SITE.title) { $("site-title").textContent = SITE.title; document.title = SITE.title; }
+if (SITE.tagline) $("site-tagline").textContent = SITE.tagline;
+if (SITE.eyebrow) $("site-eyebrow").textContent = SITE.eyebrow;
+$("gh-link").href = `https://github.com/${KIT_REPO}`;
 document.getElementById("facts").innerHTML =
   `<span><b>${core.length}</b> core skills</span><span><b>${SKILLS.length - core.length}</b> optional</span>` +
-  `<span><b>${CATS.length}</b> categories</span><span>Pinned to reviewed versions</span>`;
+  `<span><b>${CATS.length}</b> categories</span><span><b>${SKILLS.filter(s => s.inRepo).length}</b> downloadable here</span><span>Claude · Copilot · ChatGPT · Gemini</span>`;
 
 function copyText(btn, text) {
   const done = () => { btn.textContent = "Copied"; btn.classList.add("done");
@@ -854,7 +1078,7 @@ const card = (s, i) => `
   <article class="card" id="skill-${s.slug}">
     <div class="card-top">
       <span class="slug">${s.slug}</span>
-      <span class="chips">${s.author === "Agile36" ? '<span class="chip a36">Agile36</span>' : ""}<span class="chip ${s.level}">${s.level}</span>${s.optional ? '<span class="chip optional">optional</span>' : ""}</span>
+      <span class="chips">${s.inRepo ? '<span class="chip a36">in repo</span>' : ""}<span class="chip ${s.level}">${s.level}</span>${s.optional ? '<span class="chip optional">optional</span>' : ""}</span>
     </div>
     <p class="job">${esc(s.job)}</p>
     <p class="needs"><b>Needs:</b> ${esc(s.needs)}</p>
@@ -862,6 +1086,7 @@ const card = (s, i) => `
       <div class="try-label"><span>Try this</span><button class="copy" id="copy-try-${i}" data-i="${i}">Copy</button></div>
       <q>${esc(s.try)}</q>
     </div>
+    <div class="card-actions"><span>${esc(s.author)}</span><button class="open" data-slug="${s.slug}">Open skill →</button></div>
   </article>`;
 
 document.getElementById("cats").innerHTML = CATS.map(c => {
@@ -871,17 +1096,96 @@ document.getElementById("cats").innerHTML = CATS.map(c => {
 }).join("");
 document.querySelectorAll(".try .copy").forEach(b => b.addEventListener("click", () => copyText(b, SKILLS[b.dataset.i].try)));
 
+const state = { cat: "All", level: "all", q: "" };
 const filters = document.getElementById("filters");
 filters.innerHTML = [["All", SKILLS.length], ...CATS.map(c => [c, SKILLS.filter(s => s.category === c).length])]
   .map(([c, n], i) => `<button class="filter" id="filter-${i}" data-cat="${esc(c)}" aria-pressed="${i === 0}">${esc(c)}<span>${n}</span></button>`).join("");
+const levels = document.getElementById("levels");
+levels.innerHTML = ["all", "beginner", "intermediate", "advanced"]
+  .map((l, i) => `<button class="filter" id="level-${l}" data-level="${l}" aria-pressed="${i === 0}">${l === "all" ? "Any level" : l[0].toUpperCase() + l.slice(1)}</button>`).join("");
+function applyFilters() {
+  const q = state.q.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll(".cat").forEach(el => {
+    let n = 0;
+    el.querySelectorAll(".card").forEach(c => {
+      const s = SKILLS.find(x => "skill-" + x.slug === c.id);
+      const hay = [s.slug, s.job, s.category, s.needs, s.try, s.author].join(" ").toLowerCase();
+      const ok = (state.cat === "All" || s.category === state.cat) && (state.level === "all" || s.level === state.level) && (!q || q.split(/\s+/).every(w => hay.includes(w)));
+      c.hidden = !ok; if (ok) n++;
+    });
+    el.hidden = n === 0; shown += n;
+  });
+  document.getElementById("empty").hidden = shown > 0;
+}
 filters.addEventListener("click", e => {
   const b = e.target.closest(".filter"); if (!b) return;
   filters.querySelectorAll(".filter").forEach(x => x.setAttribute("aria-pressed", x === b));
-  document.querySelectorAll(".cat").forEach(el => { el.hidden = b.dataset.cat !== "All" && el.dataset.cat !== b.dataset.cat; });
+  state.cat = b.dataset.cat; applyFilters();
 });
-document.querySelectorAll(".cycle a").forEach(a => a.addEventListener("click", () => {
-  filters.querySelector(".filter").click();
+levels.addEventListener("click", e => {
+  const b = e.target.closest(".filter"); if (!b) return;
+  levels.querySelectorAll(".filter").forEach(x => x.setAttribute("aria-pressed", x === b));
+  state.level = b.dataset.level; applyFilters();
+});
+document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; applyFilters(); });
+document.querySelectorAll(".cycle a").forEach(a => a.addEventListener("click", e => {
+  e.preventDefault(); openSkill(a.getAttribute("href").replace("#skill-", ""));
 }));
+
+/* skill drawer */
+const drawer = document.getElementById("drawer");
+const mdCache = {};
+function renderMd(text) {
+  let front = "";
+  const m = text.match(/^---\n([\s\S]*?)\n---\n?/);
+  if (m) { front = `<div class="front">${esc(m[1])}</div>`; text = text.slice(m[0].length); }
+  if (!window.marked) return front + `<pre class="raw">${esc(text)}</pre>`;
+  const html = marked.parse(text);
+  return front + (window.DOMPurify ? DOMPurify.sanitize(html) : html);
+}
+async function loadMd(s) {
+  if (mdCache[s.slug]) return mdCache[s.slug];
+  const r = await fetch(s.rawSkill);
+  if (!r.ok) throw new Error(r.status);
+  return (mdCache[s.slug] = await r.text());
+}
+function openSkill(slug, push = true) {
+  const s = SKILLS.find(x => x.slug === slug); if (!s) return;
+  $("d-title").textContent = s.slug;
+  $("d-chips").innerHTML = `<span class="chip ${s.level}">${s.level}</span>${s.optional ? '<span class="chip optional">optional</span>' : ""}<span class="chip optional">${esc(s.category)}</span><span class="chip optional">${esc(s.license)}</span>`;
+  $("d-job").textContent = s.job;
+  $("d-needs").innerHTML = `<b>Needs:</b> ${esc(s.needs)} · <b>Author:</b> ${s.repo ? `<a href="${s.repo}" target="_blank" rel="noopener">${esc(s.author)}</a>` : esc(s.author)}`;
+  const cmd = `${ONE_LINER} --only ${s.slug}`;
+  $("d-cmd").textContent = cmd; $("d-cmd-copy").onclick = e => copyText(e.currentTarget, cmd);
+  $("d-try").textContent = s.try; $("d-try-copy").onclick = e => copyText(e.currentTarget, s.try);
+  $("d-src").href = s.sourceUrl;
+  const base = `skills/${s.slug}/`;
+  $("d-dl").innerHTML = s.inRepo ? [
+    [`${base}${s.slug}.zip`, "Claude app (.zip)", "Settings → Capabilities → Skills"],
+    [`${base}SKILL.md`, "SKILL.md", "Claude Code, single file"],
+    [`${base}${s.slug}.prompt.md`, "Copilot prompt", "Put in .github/prompts/"],
+    [`${base}${s.slug}.txt`, "Any chat (.txt)", "ChatGPT, Gemini, others"],
+  ].map(([href, label, hint]) => `<a class="btn" href="${href}" download>${label}<small>${hint}</small></a>`).join("")
+    + (s.hasTools ? `<p class="note">The single-file versions leave out this skill's Python tools. Use the .zip or the installer for the full skill.</p>` : "")
+    : `<p class="note">This skill lives in its author's repository and isn't re-hosted here. Use the install command above, or <a href="${s.sourceUrl}" target="_blank" rel="noopener">get it from ${esc(s.author)}</a>.</p>`;
+  $("d-md").innerHTML = '<p class="note">Loading…</p>';
+  loadMd(s).then(t => { if ($("d-title").textContent === s.slug) $("d-md").innerHTML = renderMd(t); })
+    .catch(() => { $("d-md").innerHTML = `<p class="note">Couldn't load the skill here. <a href="${s.sourceUrl}" target="_blank" rel="noopener">Read it on GitHub ↗</a></p>`; });
+  if (!drawer.open) drawer.showModal();
+  $("d-close").focus();
+  if (push) try { history.replaceState(null, "", "#/" + s.slug); } catch (e) {}
+}
+function closeSkill() { if (drawer.open) drawer.close(); }
+drawer.addEventListener("close", () => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} });
+$("d-close").addEventListener("click", closeSkill);
+drawer.addEventListener("click", e => { if (e.target === drawer) closeSkill(); });
+document.getElementById("cats").addEventListener("click", e => {
+  if (e.target.closest(".try .copy")) return;
+  const c = e.target.closest(".card"); if (c) openSkill(c.id.replace("skill-", ""));
+});
+const fromHash = () => { const m = location.hash.match(/^#\/([\w-]+)$/); if (m) openSkill(m[1], false); };
+window.addEventListener("hashchange", fromHash);
 
 const tabs = document.getElementById("tabs"), panels = document.getElementById("panels");
 tabs.innerHTML = TOOLS.map((t, i) =>
@@ -909,9 +1213,12 @@ document.getElementById("credits").innerHTML = SKILLS.map(s => `
   <tr><td class="mono">${s.slug}</td>
   <td>${s.repo ? `<a href="${s.repo}" target="_blank" rel="noopener">${esc(s.author)}</a>` : esc(s.author)}</td>
   <td>${esc(s.license)}</td>
-  <td>${s.inRepo ? `<a href="https://github.com/${KIT_REPO}" target="_blank" rel="noopener">Agile36 repo</a>` : "Author's repo"}</td></tr>`).join("");
+  <td>${s.inRepo ? `<a href="${s.sourceUrl}" target="_blank" rel="noopener">This repo</a>` : `<a href="${s.sourceUrl}" target="_blank" rel="noopener">Author's repo</a>`}</td></tr>`).join("");
 
 document.getElementById("footer").innerHTML = `
-  <p>Source, installer and class lab: <a href="https://github.com/${KIT_REPO}" target="_blank" rel="noopener">github.com/${KIT_REPO}</a></p>
+  <p>Source, installer and hands-on lab for building your own skills: <a href="https://github.com/${KIT_REPO}" target="_blank" rel="noopener">github.com/${KIT_REPO}</a></p>
   <p>Want more? <a href="https://github.com/borghei/Claude-Skills" target="_blank" rel="noopener">borghei/Claude-Skills</a> has 400 skills, and the <a href="https://majiayu000.github.io/claude-skill-registry/" target="_blank" rel="noopener">Claude Skill Registry</a> is a searchable catalog. Before installing any skill, read its SKILL.md and open its scripts, or run <code>skill-security-auditor</code> on it.</p>`;
+fromHash();
 </script>
+</body>
+</html>

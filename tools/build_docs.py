@@ -13,6 +13,8 @@ KIT = Path(__file__).resolve().parent.parent
 lib = json.loads((KIT / "library.json").read_text(encoding="utf-8"))
 skills = lib["skills"]
 repo = lib["kit_repo"]
+site = lib.get("site", {})
+title = site.get("title", "Scrum Master AI Skills Library")
 core = [s for s in skills if not s.get("optional")]
 cats = list(dict.fromkeys(s["category"] for s in skills))
 
@@ -33,10 +35,10 @@ def author_link(s):
 
 one_liner = f"curl -fsSL https://raw.githubusercontent.com/{repo}/main/tools/install_library.py | python3 -"
 
-md = [f"# Agile36 Scrum Master Skill Library", "",
+md = [f"# {title}", "", site.get("tagline", ""), "",
       f"{len(core)} skills for the jobs a Scrum Master does every sprint, plus "
       f"{len(skills) - len(core)} optional ones. Every Scrum event and SAFe event has its own skill. "
-      "Each one is pinned to the exact version Agile36 reviewed.", ""]
+      "Each one is pinned to the exact version that was reviewed.", ""]
 for c in cats:
     md += [f"## {c}", "", "| Skill | Job | Level | Needs |", "|---|---|---|---|"]
     for s in skills:
@@ -64,7 +66,7 @@ md += ["**Which retro skill?** `scrum-retrospective` plans and facilitates the m
        "| Skill | Try this |", "|---|---|"]
 md += [f"| {s['install_name']} | \"{s['try_prompt']}\" |" for s in skills]
 md += ["", "---", "", "## Sources and credit", "",
-       "Skills marked *Agile36* were written for this class. Skills from MIT-licensed repos are copied here with "
+       "Skills credited to *Agile36* were written by Agile36 for their Scrum Master class. Skills from MIT-licensed repos are copied here with "
        "their license file (see `THIRD_PARTY_NOTICES.md`). All others download from their author's repo at install time "
        "and are not re-hosted here.", "", "| Skill | Author | License | Where it comes from |", "|---|---|---|---|"]
 for s in skills:
@@ -84,12 +86,25 @@ md += ["", "Agile36's own skills, lab and tools are licensed CC BY 4.0: reuse an
 
 # page data
 page = KIT / "site/library.html"
+
+
+def source_info(s):
+    src = s["source"]
+    if "local" in src:
+        return {"repo": None, "inRepo": True, "hasTools": (KIT / src["local"] / "scripts").is_dir(),
+                "sourceUrl": f"https://github.com/{repo}/tree/main/{src['local']}",
+                "rawSkill": f"skills/{s['install_name']}/SKILL.md"}
+    base = f"{src['repo']}/{src['ref']}/{src['path'].rstrip('/')}"
+    return {"repo": f"https://github.com/{src['repo']}", "inRepo": False, "hasTools": None,
+            "sourceUrl": f"https://github.com/{src['repo']}/tree/{src['ref']}/{src['path']}",
+            "rawSkill": f"https://raw.githubusercontent.com/{base}/SKILL.md"}
+
+
 data = [{"slug": s["install_name"], "category": s["category"], "level": s["level"], "optional": bool(s.get("optional")),
          "job": s["job"], "needs": s["needs"], "try": s["try_prompt"], "author": author(s),
-         "repo": None if "local" in s["source"] else f"https://github.com/{s['source']['repo']}",
-         "license": s["license"].split(",")[0], "inRepo": "local" in s["source"]} for s in skills]
+         "license": s["license"].split(",")[0], **source_info(s)} for s in skills]
 block = ("/*SKILLS-START*/const SKILLS = " + json.dumps(data, ensure_ascii=False, indent=1)
-         + f";\nconst KIT_REPO = {json.dumps(repo)};\nconst ONE_LINER = {json.dumps(one_liner)};/*SKILLS-END*/")
+         + f";\nconst SITE = {json.dumps(site, ensure_ascii=False)};\nconst KIT_REPO = {json.dumps(repo)};\nconst ONE_LINER = {json.dumps(one_liner)};/*SKILLS-END*/")
 html = page.read_text(encoding="utf-8")
 html, n = re.subn(r"/\*SKILLS-START\*/.*?/\*SKILLS-END\*/", lambda m: block, html, flags=re.S)
 if n != 1:
