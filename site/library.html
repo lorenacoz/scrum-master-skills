@@ -1077,7 +1077,7 @@ if (SITE.eyebrow) $("site-eyebrow").textContent = SITE.eyebrow;
 $("gh-link").href = `https://github.com/${KIT_REPO}`;
 document.getElementById("facts").innerHTML =
   `<span><b>${core.length}</b> core skills</span><span><b>${SKILLS.length - core.length}</b> optional</span>` +
-  `<span><b>${CATS.length}</b> categories</span><span><b>${SKILLS.filter(s => s.inRepo).length}</b> downloadable here</span><span>Claude · Copilot · ChatGPT · Gemini</span>`;
+  `<span><b>${CATS.length}</b> categories</span><span><b>${SKILLS.filter(s => s.inRepo || s.hosted).length}</b> downloadable here</span><span>Claude · Copilot · ChatGPT · Gemini</span>`;
 
 function copyText(btn, text) {
   const done = () => { btn.textContent = "Copied"; btn.classList.add("done");
@@ -1178,13 +1178,14 @@ function openSkill(slug, push = true) {
   $("d-try").textContent = s.try; $("d-try-copy").onclick = e => copyText(e.currentTarget, s.try);
   $("d-src").href = s.sourceUrl;
   const base = `skills/${s.slug}/`;
-  $("d-dl").innerHTML = s.inRepo ? [
+  $("d-dl").innerHTML = (s.inRepo || s.hosted) ? [
     [`${base}${s.slug}.zip`, "Claude app (.zip)", "Settings → Capabilities → Skills"],
     [`${base}SKILL.md`, "SKILL.md", "Claude Code, single file"],
     [`${base}${s.slug}.prompt.md`, "Copilot prompt", "Put in .github/prompts/"],
     [`${base}${s.slug}.md`, "Any AI model (.md)", "One Markdown file, any assistant"],
     [`${base}${s.slug}.txt`, "Any chat (.txt)", "ChatGPT, Gemini, others"],
   ].map(([href, label, hint]) => `<a class="btn dl-file" href="${href}" download>${label}<small>${hint}</small></a>`).join("")
+    + (s.hosted ? `<p class="note">Shared by ${esc(s.author)} under the ${esc(s.license)} license. Keep the LICENSE file (it's in the .zip) when you pass it on; the license doesn't allow selling it.</p>` : "")
     + (s.hasTools ? `<p class="note">The single-file versions leave out this skill's Python tools. Use the .zip or the installer for the full skill.</p>` : "")
     : `<p class="note">This skill lives in its author's repository and isn't re-hosted here. Use the install command above, or <a href="${s.sourceUrl}" target="_blank" rel="noopener">get it from ${esc(s.author)}</a>.</p>`;
   $("d-md").innerHTML = '<p class="note">Loading…</p>'; $("d-dl-msg").hidden = true;
@@ -1249,7 +1250,7 @@ async function prepareCopies(s) {
       const skill = await loadMd(s);
       const { body, desc } = splitSkill(skill);
       let copilot = copilotMd(desc, body), any = anyModelMd(s.slug, desc, body), full = skill;
-      if (s.inRepo) {  // the hosted files fold in the skill's reference files
+      if (s.inRepo || s.hosted) {  // the hosted files fold in the skill's reference files
         const get = f => fetch(`skills/${s.slug}/${f}`).then(r => r.ok ? r.text() : null).catch(() => null);
         const [c, a, k] = await Promise.all([get(`${s.slug}.prompt.md`), get(`${s.slug}.md`), get("SKILL.md")]);
         copilot = c || copilot; any = a || any; full = k || full;
@@ -1258,7 +1259,7 @@ async function prepareCopies(s) {
     }
     if ($("d-title").textContent !== s.slug) return;
     btns.forEach(b => b.disabled = false);
-    msg.textContent = s.inRepo ? "Includes the skill's reference material. Paste it as your first message, or save it as a file."
+    msg.textContent = (s.inRepo || s.hosted) ? "Includes the skill's reference material. Paste it as your first message, or save it as a file."
       : "Copies the skill's main file from its author. Its reference files, if any, are on GitHub (View source).";
   } catch (e) {
     if ($("d-title").textContent === s.slug) msg.innerHTML = `Couldn't load the skill here. <a href="${s.sourceUrl}" target="_blank" rel="noopener">Copy it from GitHub ↗</a>`;
