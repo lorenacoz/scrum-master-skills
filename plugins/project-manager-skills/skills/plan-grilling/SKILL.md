@@ -1,9 +1,12 @@
 ---
 name: plan-grilling
 description: >
-  Interrogate a plan, design or idea one round of questions at a time until
-  every decision is settled. Use when stress-testing a plan before building,
-  when a design feels underspecified, or turning a fuzzy workflow into a spec.
+  Interrogate a plan, design or idea one round of questions at a time until every decision
+  is settled. Use when stress-testing a plan before building, when a design feels
+  underspecified, or turning a fuzzy workflow into a spec. Also use for project and program
+  managers: Stress-test a plan one round of questions at a time until every decision is
+  settled. For example: "Grill this plan: we move 4 teams to a new deployment pipeline in 6
+  weeks, one team at a time, with no change freeze."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.0

@@ -1,9 +1,12 @@
 ---
 name: status-update-generator
 description: >
-  Renders a weekly executive status update (highlights, blockers, risks, asks,
-  next) from Jira or Linear data. Use when preparing a sponsor or steering
-  update, or standardising a team's weekly report.
+  Renders a weekly executive status update (highlights, blockers, risks, asks, next) from
+  Jira or Linear data. Use when preparing a sponsor or steering update, or standardising a
+  team's weekly report. Also use for project and program managers: Write a weekly status
+  update: RAG status, progress, risks and asks. For example: "Write this week's status
+  update. We finished data migration testing, the vendor delivery slipped a week, and we
+  need a decision on training dates."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

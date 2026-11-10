@@ -1,17 +1,18 @@
 ---
 name: problem-solver
-description: >-
-  Diagnose problems before solving them: turn "X is broken and we don't know
-  why" into a precise problem statement, verified root causes, solutions traced
-  to those causes, and a rollout plan. Use whenever the user reports something
-  failing, breaking, slowing, or recurring without a known cause: "sales dropped
-  and we don't know why", "this keeps happening", "why does X keep failing",
-  "find the root cause", "run a post-mortem", "5 whys"; Vietnamese "sao cứ bị
-  vậy hoài", "tìm nguyên nhân gốc", "X đang hỏng mà không rõ vì sao". Trigger
-  even when the user asks for solutions directly: "give me ideas to fix falling
-  sales" is a diagnosis request. Not for open-ended ideation when nothing is
-  broken (brainstorm-coach), understanding user needs (design-thinking), or
-  company-level strategic bets (strategy-board).
+description: >
+  Diagnose problems before solving them: turn "X is broken and we don't know why" into a
+  precise problem statement, verified root causes, solutions traced to those causes, and a
+  rollout plan. Use whenever the user reports something failing, breaking, slowing, or
+  recurring without a known cause: "sales dropped and we don't know why", "this keeps
+  happening", "why does X keep failing", "find the root cause", "run a post-mortem", "5
+  whys"; Vietnamese "sao cứ bị vậy hoài", "tìm nguyên nhân gốc", "X đang hỏng mà không rõ vì
+  sao". Trigger even when the user asks for solutions directly: "give me ideas to fix
+  falling sales" is a diagnosis request. Not for open-ended ideation when nothing is broken
+  (brainstorm-coach), understanding user needs (design-thinking), or company-level strategic
+  bets (strategy-board). Also use for project and program managers: Diagnose a recurring
+  problem before fixing it: problem statement and verified root causes. For example: "Our
+  releases have slipped 4 of the last 6 months. Help me find…
 ---
 
 # Problem Solver

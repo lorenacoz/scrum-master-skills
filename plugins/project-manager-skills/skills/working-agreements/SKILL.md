@@ -1,13 +1,15 @@
 ---
 name: working-agreements
 description: >
-  Help a Scrum Master run a team chartering session: purpose, working
-  agreements, and a first Definition of Done. Use for "we're a new team",
-  "help me write working agreements", "team charter", "our team has no
-  ground rules", "draft a Definition of Done", "people keep ignoring our
-  agreements", or kicking off a team after a reorg. Not for resolving a
-  conflict between people (use team-conflict) or refining backlog items
-  against the Definition of Done (use backlog-refinement).
+  Help a Scrum Master run a team chartering session: purpose, working agreements, and a
+  first Definition of Done. Use for "we're a new team", "help me write working agreements",
+  "team charter", "our team has no ground rules", "draft a Definition of Done", "people keep
+  ignoring our agreements", or kicking off a team after a reorg. Not for resolving a
+  conflict between people (use team-conflict) or refining backlog items against the
+  Definition of Done (use backlog-refinement). Also use for project and program managers:
+  Charter a new team: purpose, working agreements and a first Definition of Done. For
+  example: "We just formed a 7-person cross-functional team across two time zones.
+  Facilitate a 90-minute chartering session."
 ---
 
 # Working Agreements

@@ -1,9 +1,12 @@
 ---
 name: stakeholder-map
 description: >
-  Maps stakeholders by power, interest and stance, then plans engagement and
-  blocker conversion so objections surface early. Use for a major initiative,
-  an enterprise deal, a re-org or a contested roadmap change.
+  Maps stakeholders by power, interest and stance, then plans engagement and blocker
+  conversion so objections surface early. Use for a major initiative, an enterprise deal, a
+  re-org or a contested roadmap change. Also use for project and program managers: Map who
+  has power and interest, and plan how to engage each group. For example: "Map stakeholders
+  for a CRM replacement: sponsor (CFO), sales leadership, 40 sales reps, IT security, an
+  outside vendor and the data team."
 license: MIT + Commons Clause
 metadata:
   version: 1.1.0

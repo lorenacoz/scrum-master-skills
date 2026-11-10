@@ -1,9 +1,12 @@
 ---
 name: delivery-manager
 description: >
-  Plans releases, picks deployment strategies, runs incidents and tracks DORA metrics
-  and error budgets. Use when preparing a Go/No-Go, choosing canary or blue-green,
-  handling a production incident or reporting delivery health.
+  Plans releases, picks deployment strategies, runs incidents and tracks DORA metrics and
+  error budgets. Use when preparing a Go/No-Go, choosing canary or blue-green, handling a
+  production incident or reporting delivery health. Also use for project and program
+  managers: Plan releases, run a Go/No-Go, choose a deployment strategy, handle an incident.
+  For example: "Prepare the Go/No-Go checklist for Friday's release. Two open bugs are rated
+  medium and the on-call engineer is new."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

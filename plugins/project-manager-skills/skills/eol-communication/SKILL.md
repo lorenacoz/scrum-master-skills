@@ -1,9 +1,12 @@
 ---
 name: eol-communication
 description: >
-  Plan and write end-of-life announcements with dated milestones, a working
-  migration path and per-segment messages. Use when sunsetting a product,
-  feature, API version or pricing tier.
+  Plan and write end-of-life announcements with dated milestones, a working migration path
+  and per-segment messages. Use when sunsetting a product, feature, API version or pricing
+  tier. Also use for project and program managers: Retire a system or feature: dated
+  milestones, migration path, messages per audience. For example: "We retire the old
+  reporting tool on 30 September. Plan the announcements for power users, occasional users
+  and managers."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

@@ -1,9 +1,12 @@
 ---
 name: notion-pm
 description: >
-  Designs Notion databases, views and page structure for PRDs, OKRs, roadmaps
-  and decisions, and writes REST API calls. Use when asked to "design a PRD
-  database", sync Notion with Jira or Linear, or script the Notion API.
+  Designs Notion databases, views and page structure for PRDs, OKRs, roadmaps and decisions,
+  and writes REST API calls. Use when asked to "design a PRD database", sync Notion with
+  Jira or Linear, or script the Notion API. Also use for project and program managers:
+  Design Notion databases and views for projects, decisions and roadmaps. For example:
+  "Design a Notion setup for tracking 10 projects with status, owner, RAG, risks and
+  decisions."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

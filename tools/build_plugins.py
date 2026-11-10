@@ -18,9 +18,11 @@ stay installable with tools/install_library.py. Standard library only.
 """
 import argparse
 import json
+import re
 import shutil
 import sys
 import tempfile
+import textwrap
 import zipfile
 from pathlib import Path
 
@@ -29,7 +31,7 @@ sys.path.insert(0, str(KIT / "tools"))
 import export_skill  # noqa: E402
 import install_library  # noqa: E402
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 OWNER = "lorenacoz"
 
 
@@ -50,6 +52,25 @@ def use_clone(clone: Path, repo: str):
     install_library.fetch_remote = fetch_local
 
 
+MAX_DESC = 1024  # Claude's limit for a skill description
+
+
+def add_trigger(staged: Path, extra: str):
+    """Append project-manager wording to the skill's description, so Claude picks it for PM requests."""
+    md = staged / "SKILL.md"
+    text = md.read_text(encoding="utf-8")
+    meta, _ = export_skill.parse_skill(staged)
+    base = meta["description"].strip()
+    if len(base) + 1 + len(extra) > MAX_DESC:
+        extra = extra[: MAX_DESC - len(base) - 2].rsplit(" ", 1)[0] + "…"
+    new = (base + " " + extra).strip()
+    block = "description: >\n" + "\n".join("  " + l for l in textwrap.wrap(new, 90)) + "\n"
+    front_end = text.index("\n---", 3)
+    front = re.sub(r"^description:.*\n(?:[ \t]+.*\n)*", lambda m: block, text[:front_end + 1], count=1, flags=re.M)
+    md.write_text(front + text[front_end + 1:], encoding="utf-8")
+    return len(new)
+
+
 def author_of(s):
     src = s["source"]
     if "local" in src:
@@ -67,6 +88,10 @@ def build_plugin(name, description, keywords, entries, kit_repo, upstream_licens
         staged = install_library.stage(s, Path(tmp) / name)
         if "local" not in s["source"] and not (staged / "LICENSE").exists() and upstream_license:
             (staged / "LICENSE").write_text(upstream_license, encoding="utf-8")
+        if s.get("trigger"):
+            n = add_trigger(staged, s["trigger"])
+            if n > MAX_DESC:
+                raise SystemExit(f"{s['install_name']}: description is {n} characters")
         for junk in staged.rglob("__pycache__"):
             shutil.rmtree(junk)
         shutil.copytree(staged, root / "skills" / s["install_name"])
@@ -149,6 +174,8 @@ def main():
                                    "source": {"repo": up["repo"], "ref": up["ref"], "path": it["upstream"]}})
     for e, it in zip(pm_entries, [i for st in pb["stages"] for i in st["skills"]]):
         e["job"] = it["when"]
+        e["trigger"] = (f"Also use for project and program managers: {it['when']} "
+                        f"For example: \"{it['try']}\"")
     sm_entries = [s for s in lib["skills"] if redistributable(s)]
     left_out = [s["install_name"] for s in lib["skills"] if not redistributable(s)]
 

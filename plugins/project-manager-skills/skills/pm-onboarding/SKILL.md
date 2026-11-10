@@ -2,8 +2,11 @@
 name: pm-onboarding
 description: >
   Builds a new PM's 30-60-90 day plan from a situation diagnosis: stakeholder map, 1:1
-  questions, early wins and a first PRD. Use when starting a PM job, moving to a new
-  team, or taking on new scope.
+  questions, early wins and a first PRD. Use when starting a PM job, moving to a new team,
+  or taking on new scope. Also use for project and program managers: Build a 30-60-90 day
+  plan when you join a new project, program or company. For example: "I'm taking over a
+  delayed program next Monday. Build my 30-60-90 day plan: who to meet, what to ask, and
+  early wins."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

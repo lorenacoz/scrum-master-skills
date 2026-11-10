@@ -1,9 +1,12 @@
 ---
 name: daci-framework
 description: >
-  Assign Driver, Approver, Contributor and Informed roles for the decisions
-  that keep stalling, then roll the chart out. Use when decisions thrash,
-  ownership is unclear after a reorg, or a new team needs decision rights.
+  Assign Driver, Approver, Contributor and Informed roles for the decisions that keep
+  stalling, then roll the chart out. Use when decisions thrash, ownership is unclear after a
+  reorg, or a new team needs decision rights. Also use for project and program managers:
+  Agree who Drives, Approves, Contributes and is Informed for a decision, before it stalls.
+  For example: "Set up a DACI for choosing between two vendors for our new ticketing tool.
+  Budget sign-off sits with the VP of Operations."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

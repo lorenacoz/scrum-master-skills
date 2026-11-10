@@ -1,14 +1,15 @@
 ---
 name: metrics-conversation
 description: >
-  Prepare a Scrum Master for a conversation with management about metrics
-  being misused: comparing teams by velocity, story points as performance
-  targets, "increase velocity by 20%", or individual productivity tracking.
-  Offers better measures and a script. Use for "my director wants to
-  compare team velocities", "management set a velocity target", "they want
-  points per developer", "what metrics should we report instead", or "how
-  do I explain velocity to leadership". Not for calculating the metrics
-  themselves (use scrum-analytics or cycle-time-analyzer).
+  Prepare a Scrum Master for a conversation with management about metrics being misused:
+  comparing teams by velocity, story points as performance targets, "increase velocity by
+  20%", or individual productivity tracking. Offers better measures and a script. Use for
+  "my director wants to compare team velocities", "management set a velocity target", "they
+  want points per developer", "what metrics should we report instead", or "how do I explain
+  velocity to leadership". Not for calculating the metrics themselves (use scrum-analytics
+  or cycle-time-analyzer). Also use for project and program managers: Present delivery
+  metrics to leadership without them being misused. For example: "My manager wants to
+  compare teams by velocity. Help me explain why that backfires and what to show instead."
 ---
 
 # The Metrics Conversation

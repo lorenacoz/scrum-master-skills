@@ -1,14 +1,15 @@
 ---
 name: protect-the-sprint
 description: >
-  Help a Scrum Master handle mid-sprint requests and pressure without
-  breaking the Sprint Goal: urgent asks, "can you just squeeze this in",
-  managers assigning work directly, and scope that keeps growing. Drafts
-  the reply. Use for "my manager wants this added to the sprint", "a VP
-  just asked the team for something urgent", "how do I say no to a
-  stakeholder", "scope keeps creeping", or "should we cancel the sprint".
-  Not for logging a blocker (use impediment-log) or planning the next
-  sprint (use sprint-plan).
+  Help a Scrum Master handle mid-sprint requests and pressure without breaking the Sprint
+  Goal: urgent asks, "can you just squeeze this in", managers assigning work directly, and
+  scope that keeps growing. Drafts the reply. Use for "my manager wants this added to the
+  sprint", "a VP just asked the team for something urgent", "how do I say no to a
+  stakeholder", "scope keeps creeping", or "should we cancel the sprint". Not for logging a
+  blocker (use impediment-log) or planning the next sprint (use sprint-plan). Also use for
+  project and program managers: Handle mid-sprint requests and scope creep, and draft the
+  reply to the stakeholder. For example: "A director asked my team to 'squeeze in' a new
+  report this sprint. We're at full capacity. Draft my reply."
 ---
 
 # Protect the Sprint

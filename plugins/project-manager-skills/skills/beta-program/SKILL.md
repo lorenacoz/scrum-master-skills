@@ -1,9 +1,12 @@
 ---
 name: beta-program
 description: >
-  Plan and run a closed beta: cohorts, exit gates agreed before recruiting,
-  weekly cadence and a Greenlight/Extend/Pivot/Kill memo. Use when running a
-  closed beta or design-partner program before general availability.
+  Plan and run a closed beta: cohorts, exit gates agreed before recruiting, weekly cadence
+  and a Greenlight/Extend/Pivot/Kill memo. Use when running a closed beta or design-partner
+  program before general availability. Also use for project and program managers: Run a
+  pilot or closed beta with exit criteria agreed before it starts. For example: "Plan a
+  6-week pilot of our new scheduling tool with 3 regional offices before company-wide
+  rollout."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

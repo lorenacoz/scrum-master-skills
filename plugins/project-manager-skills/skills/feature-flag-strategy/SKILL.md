@@ -1,9 +1,11 @@
 ---
 name: feature-flag-strategy
 description: >
-  Plan a flag-gated rollout: classify the flag, pick a rollout shape, set
-  kill-switch thresholds and retire the flag. Use when planning a phased
-  rollout, a kill switch, a holdout or a cleanup of old flags.
+  Plan a flag-gated rollout: classify the flag, pick a rollout shape, set kill-switch
+  thresholds and retire the flag. Use when planning a phased rollout, a kill switch, a
+  holdout or a cleanup of old flags. Also use for project and program managers: Plan a
+  phased rollout with a kill switch. For example: "Plan a phased rollout of the new checkout
+  flow: 5%, 25%, 100%, with clear rollback triggers."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

@@ -1,9 +1,12 @@
 ---
 name: program-manager
 description: >
-  Runs multi-project programs: charters, governance, cross-project dependencies,
-  benefits tracking and steering-committee reporting. Use when standing up a
-  program, tracking its milestones and people, or preparing a steering update.
+  Runs multi-project programs: charters, governance, cross-project dependencies, benefits
+  tracking and steering-committee reporting. Use when standing up a program, tracking its
+  milestones and people, or preparing a steering update. Also use for project and program
+  managers: Coordinate several related projects: roadmap, dependencies, governance. For
+  example: "I run a program of 4 projects that all feed a new billing system. Set up the
+  governance and a monthly program review."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

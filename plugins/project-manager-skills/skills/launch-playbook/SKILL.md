@@ -1,9 +1,11 @@
 ---
 name: launch-playbook
 description: >
-  Coordinate a launch from T-30 to T+30: owners, run-of-show, internal and
-  external comms, rollback and retro. Use when a feature goes GA after beta, a
-  major release ships, or a product is relaunched.
+  Coordinate a launch from T-30 to T+30: owners, run-of-show, internal and external comms,
+  rollback and retro. Use when a feature goes GA after beta, a major release ships, or a
+  product is relaunched. Also use for project and program managers: Coordinate a launch from
+  30 days before to 30 days after: owners, run-of-show, comms, rollback, retro. For example:
+  "Build the launch plan for our new customer self-service portal going live in 4 weeks."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

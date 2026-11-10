@@ -1,10 +1,12 @@
 ---
 name: outcome-roadmap
 description: >
-  Turn a feature-list roadmap into outcome statements placed in Now/Next/Later,
-  and check each has a measure. Use when converting a feature-list
-  roadmap, reviewing a roadmap before it goes to leadership, or quarterly
-  planning.
+  Turn a feature-list roadmap into outcome statements placed in Now/Next/Later, and check
+  each has a measure. Use when converting a feature-list roadmap, reviewing a roadmap before
+  it goes to leadership, or quarterly planning. Also use for project and program managers:
+  Turn a feature list into a Now / Next / Later roadmap of outcomes, each with a measure.
+  For example: "Turn this into an outcome roadmap: new dashboard, CSV export, SSO, mobile
+  app, faster search, audit log."
 license: MIT + Commons Clause
 metadata:
   version: 1.1.0

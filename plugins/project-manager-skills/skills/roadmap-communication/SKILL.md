@@ -1,10 +1,12 @@
 ---
 name: roadmap-communication
 description: >
-  Produce executive, customer and internal versions of one roadmap with
-  consistent framing and the right detail and risk language for each. Use when
-  publishing the quarterly roadmap, a board packet or a customer or sales
-  roadmap.
+  Produce executive, customer and internal versions of one roadmap with consistent framing
+  and the right detail and risk language for each. Use when publishing the quarterly
+  roadmap, a board packet or a customer or sales roadmap. Also use for project and program
+  managers: Produce executive, customer and internal versions of one roadmap. For example:
+  "Turn our Q2 roadmap into three versions: a one-slide exec summary, a customer-facing
+  note, and an internal team version."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

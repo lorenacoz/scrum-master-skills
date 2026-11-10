@@ -1,9 +1,12 @@
 ---
 name: quarterly-planning
 description: >
-  Run the meetings around a quarter's OKRs: homework and kickoff, weekly
-  check-ins, the week-6 carry/kill/pivot review and the close retro. Use when
-  running any phase of that cadence; writing the OKRs is brainstorm-okrs.
+  Run the meetings around a quarter's OKRs: homework and kickoff, weekly check-ins, the
+  week-6 carry/kill/pivot review and the close retro. Use when running any phase of that
+  cadence; writing the OKRs is brainstorm-okrs. Also use for project and program managers:
+  Plan a quarter: capacity, commitments versus stretch, cross-team dependencies. For
+  example: "Plan Q3 for two teams (11 people, one starting parental leave in August).
+  Leadership wants 6 initiatives; help us decide what fits."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

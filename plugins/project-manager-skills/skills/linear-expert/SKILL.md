@@ -1,9 +1,11 @@
 ---
 name: linear-expert
 description: >
-  Administers Linear teams, cycles, projects and triage, and writes GraphQL
-  API calls. Use when setting up or fixing a Linear workspace, scripting bulk
-  changes, or migrating from Jira to Linear.
+  Administers Linear teams, cycles, projects and triage, and writes GraphQL API calls. Use
+  when setting up or fixing a Linear workspace, scripting bulk changes, or migrating from
+  Jira to Linear. Also use for project and program managers: Set up Linear teams, cycles,
+  projects and triage. For example: "Set up Linear for 3 teams that share one product, with
+  a shared triage queue."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

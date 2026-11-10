@@ -1,9 +1,12 @@
 ---
 name: prioritization-frameworks
 description: >
-  Pick a prioritization method and rank a backlog: RICE, ICE, opportunity,
-  MoSCoW and weighted scoring, plus four reference-only methods. Use when
-  ranking features, problems or initiatives against each other.
+  Pick a prioritization method and rank a backlog: RICE, ICE, opportunity, MoSCoW and
+  weighted scoring, plus four reference-only methods. Use when ranking features, problems or
+  initiatives against each other. Also use for project and program managers: Choose and
+  apply a prioritization method (RICE, MoSCoW, WSJF, Kano and others). For example:
+  "Prioritize these 8 requests from three departments using WSJF. Here is what I know about
+  value and effort for each: ..."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

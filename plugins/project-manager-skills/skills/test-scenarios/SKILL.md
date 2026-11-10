@@ -1,9 +1,12 @@
 ---
 name: test-scenarios
 description: >
-  Writes QA cases from a feature spec across happy, edge, error, empty,
-  concurrent, accessibility and security paths, then audits coverage. Use when
-  planning QA for a feature, or finding coverage gaps after an incident.
+  Writes QA cases from a feature spec across happy, edge, error, empty, concurrent,
+  accessibility and security paths, then audits coverage. Use when planning QA for a
+  feature, or finding coverage gaps after an incident. Also use for project and program
+  managers: Write QA test cases from a spec, including edge, error and security paths. For
+  example: "Write test scenarios for a new expense-claim form: upload receipt, pick cost
+  center, submit for approval."
 license: MIT + Commons Clause
 metadata:
   version: 1.1.0

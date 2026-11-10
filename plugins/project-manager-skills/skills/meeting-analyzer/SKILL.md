@@ -1,9 +1,12 @@
 ---
 name: meeting-analyzer
 description: >
-  Turns meeting notes into an accountable register and diagnoses recurring
-  meetings. Use when commitments get dropped or a series decides nothing; for
-  a single meeting's recap use summarize-meeting.
+  Turns meeting notes into an accountable register and diagnoses recurring meetings. Use
+  when commitments get dropped or a series decides nothing; for a single meeting's recap use
+  summarize-meeting. Also use for project and program managers: Turn meeting notes into a
+  register of who committed to what; diagnose meetings that decide nothing. For example:
+  "Here are notes from our last 4 weekly steering meetings. Pull out every commitment and
+  tell me which items keep rolling over."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.0

@@ -1,9 +1,12 @@
 ---
 name: dependency-map
 description: >
-  Track cross-team dependencies in one JSON file and get a risk-ranked blocker
-  list, the longest hand-off chain and a Mermaid graph. Use when several teams
-  depend on each other and you need to know what to chase this week.
+  Track cross-team dependencies in one JSON file and get a risk-ranked blocker list, the
+  longest hand-off chain and a Mermaid graph. Use when several teams depend on each other
+  and you need to know what to chase this week. Also use for project and program managers:
+  Find cross-team dependencies and rank them by risk. For example: "Map dependencies for a
+  release that needs the payments team's new API, a security review and a vendor contract
+  renewal."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

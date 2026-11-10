@@ -1,9 +1,12 @@
 ---
 name: pre-mortem
 description: >
-  Runs a pre-mortem that sorts launch risks into evidenced tigers, paper tigers and
-  unspoken elephants, each with an owner. Use when a big launch, build or migration is
-  coming, or the team has a bad feeling it cannot name.
+  Runs a pre-mortem that sorts launch risks into evidenced tigers, paper tigers and unspoken
+  elephants, each with an owner. Use when a big launch, build or migration is coming, or the
+  team has a bad feeling it cannot name. Also use for project and program managers: Imagine
+  the project failed, list why, and give each risk an owner and a mitigation. For example:
+  "Run a pre-mortem for our ERP go-live on 1 March. 300 users, a two-week cutover window,
+  and the vendor is new to us."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

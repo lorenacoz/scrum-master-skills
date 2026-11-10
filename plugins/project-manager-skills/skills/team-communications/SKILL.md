@@ -1,6 +1,12 @@
 ---
 name: team-communications
-description: "Use for any internal communication: 3P updates, weekly or status reports, newsletters, FAQs, incident reports, leadership updates ('write my update'). Drafts it in the right format for the audience."
+description: >
+  Use for any internal communication: 3P updates, weekly or status reports, newsletters,
+  FAQs, incident reports, leadership updates ('write my update'). Drafts it in the right
+  format for the audience. Also use for project and program managers: Design how the team
+  communicates: channels, meeting load, status structure, escalation. For example: "My team
+  has 14 hours of recurring meetings a week. Redesign our communication setup to cut that in
+  half."
 ---
 
 # Internal Comms

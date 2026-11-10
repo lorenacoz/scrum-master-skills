@@ -1,9 +1,12 @@
 ---
 name: cycle-time-analyzer
 description: >
-  Compute lead time, cycle time, throughput, WIP, aging WIP and a cumulative
-  flow diagram from issue status history. Use when diagnosing slow delivery,
-  setting WIP limits or preparing a flow review.
+  Compute lead time, cycle time, throughput, WIP, aging WIP and a cumulative flow diagram
+  from issue status history. Use when diagnosing slow delivery, setting WIP limits or
+  preparing a flow review. Also use for project and program managers: Analyze cycle time and
+  throughput to find where work gets stuck and forecast delivery. For example: "Here's an
+  export of 60 tickets with start and done dates. Where does work get stuck, and when will
+  the remaining 25 be done?"
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

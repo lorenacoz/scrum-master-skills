@@ -1,9 +1,12 @@
 ---
 name: decision-questionnaire
 description: >
-  Turn a blocked decision into an async questionnaire a stakeholder can answer
-  without a meeting. Use when you need someone else's input to decide, a meeting
-  would be overkill, or answers from several people must be consolidated.
+  Turn a blocked decision into an async questionnaire a stakeholder can answer without a
+  meeting. Use when you need someone else's input to decide, a meeting would be overkill, or
+  answers from several people must be consolidated. Also use for project and program
+  managers: Get a decision from a busy stakeholder in writing, without scheduling a meeting.
+  For example: "I need the VP to choose between delaying launch two weeks or cutting the
+  reporting feature. Write a questionnaire she can answer in 5 minutes."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.0

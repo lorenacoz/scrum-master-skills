@@ -1,9 +1,12 @@
 ---
 name: release-notes
 description: >
-  Turn tickets, changelogs and git logs into user-facing notes grouped by
-  type, breaking changes first. Use when announcing a product release,
-  maintaining a changelog, or rewriting technical entries for customers.
+  Turn tickets, changelogs and git logs into user-facing notes grouped by type, breaking
+  changes first. Use when announcing a product release, maintaining a changelog, or
+  rewriting technical entries for customers. Also use for project and program managers: Turn
+  tickets and changelogs into release notes people will read. For example: "Turn this list
+  of 18 closed tickets into release notes for business users. Put anything that changes
+  their daily work first."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

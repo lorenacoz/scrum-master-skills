@@ -1,9 +1,11 @@
 ---
 name: post-mortem
 description: >
-  Run a blameless review with a timeline, contributing causes and owned action
-  items. Use when an incident, outage, missed launch or failed experiment
-  needs a written review.
+  Run a blameless review with a timeline, contributing causes and owned action items. Use
+  when an incident, outage, missed launch or failed experiment needs a written review. Also
+  use for project and program managers: Run a blameless review after a missed launch,
+  incident or failed project. For example: "Run a blameless post-mortem on our go-live that
+  was rolled back after 6 hours."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

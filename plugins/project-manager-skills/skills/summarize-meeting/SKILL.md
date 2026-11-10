@@ -1,9 +1,12 @@
 ---
 name: summarize-meeting
 description: >
-  Turns meeting notes or transcripts into a summary of decisions, owned and dated
-  action items, and open questions. Use when writing up a meeting, a recap email or
-  a decision log; for patterns across a series use meeting-analyzer.
+  Turns meeting notes or transcripts into a summary of decisions, owned and dated action
+  items, and open questions. Use when writing up a meeting, a recap email or a decision log;
+  for patterns across a series use meeting-analyzer. Also use for project and program
+  managers: Summarize one meeting into decisions, action items with owners, and open
+  questions. For example: "Summarize this transcript into decisions, action items with
+  owners and due dates, and open questions."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

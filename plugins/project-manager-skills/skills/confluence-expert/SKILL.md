@@ -1,9 +1,12 @@
 ---
 name: confluence-expert
 description: >
-  Designs and audits Confluence spaces: page trees, labels, permissions, page ownership
-  and stale content. Use when setting up or restructuring a space, a wiki has gone stale
-  or duplicated, or labels are a mess.
+  Designs and audits Confluence spaces: page trees, labels, permissions, page ownership and
+  stale content. Use when setting up or restructuring a space, a wiki has gone stale or
+  duplicated, or labels are a mess. Also use for project and program managers: Set up or
+  clean up Confluence spaces, page trees, permissions and stale pages. For example: "Design
+  a Confluence space structure for a program with 4 projects, a steering committee and a
+  vendor."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

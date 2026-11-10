@@ -1,9 +1,12 @@
 ---
 name: atlassian-templates
 description: >
-  Builds, validates and retires reusable Jira issue and Confluence page templates. Use
-  when creating a team or org-wide template, a template is ignored or half-filled, or a
-  template library has sprawled. Space layout is confluence-expert.
+  Builds, validates and retires reusable Jira issue and Confluence page templates. Use when
+  creating a team or org-wide template, a template is ignored or half-filled, or a template
+  library has sprawled. Space layout is confluence-expert. Also use for project and program
+  managers: Build reusable Jira issue and Confluence page templates people actually fill in.
+  For example: "Create a Confluence template for a weekly project status page and a Jira
+  template for a change request."
 license: MIT + Commons Clause
 metadata:
   version: 1.1.0

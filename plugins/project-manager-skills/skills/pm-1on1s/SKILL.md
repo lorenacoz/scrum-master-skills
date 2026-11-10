@@ -3,7 +3,10 @@ name: pm-1on1s
 description: >
   Builds 1:1 agendas and kickoff scripts for a PM's manager, EM, designer, reports and
   cross-functional partners. Use when starting a new 1:1, a 1:1 has turned into status
-  updates, or you need to give a partner hard feedback.
+  updates, or you need to give a partner hard feedback. Also use for project and program
+  managers: Plan 1:1s with your manager, engineering leads and partners. For example: "Build
+  an agenda for my first 1:1 with the new engineering manager on my project. Things are
+  tense after a missed deadline."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

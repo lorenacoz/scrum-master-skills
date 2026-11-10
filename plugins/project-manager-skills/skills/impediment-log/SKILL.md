@@ -1,12 +1,14 @@
 ---
 name: impediment-log
 description: >
-  Log, triage and escalate a team's impediments: anything slowing progress
-  toward the Sprint Goal. Use for "track this blocker", "we're blocked by
-  another team", "how do I escalate this", "write this up for management",
-  "what do I do about this impediment". Not for project-level risk
-  registers (use project-manager), launch risks (use pre-mortem) or
-  cross-team dependency maps (use dependency-map).
+  Log, triage and escalate a team's impediments: anything slowing progress toward the Sprint
+  Goal. Use for "track this blocker", "we're blocked by another team", "how do I escalate
+  this", "write this up for management", "what do I do about this impediment". Not for
+  project-level risk registers (use project-manager), launch risks (use pre-mortem) or
+  cross-team dependency maps (use dependency-map). Also use for project and program
+  managers: Log, triage and escalate a blocker, and draft the escalation message. For
+  example: "We've waited 9 days for firewall access from another department. Help me
+  escalate it without burning the relationship."
 ---
 
 # Impediment Log

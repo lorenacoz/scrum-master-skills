@@ -1,9 +1,12 @@
 ---
 name: senior-pm
 description: >
-  Scores portfolio health, risk exposure and resource capacity from a project JSON
-  and frames board-ready status reports. Use when running a portfolio review,
-  writing an executive RAG report, or rebalancing people across projects.
+  Scores portfolio health, risk exposure and resource capacity from a project JSON and
+  frames board-ready status reports. Use when running a portfolio review, writing an
+  executive RAG report, or rebalancing people across projects. Also use for project and
+  program managers: Score portfolio health, risk exposure and resource capacity; frame
+  executive status reports. For example: "Here are my 5 projects with budget, schedule and
+  risk data. Score their health and draft the portfolio summary for the steering committee."
 license: MIT + Commons Clause
 metadata:
   version: 2.0.1

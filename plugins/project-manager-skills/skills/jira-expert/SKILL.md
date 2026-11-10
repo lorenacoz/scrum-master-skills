@@ -1,9 +1,12 @@
 ---
 name: jira-expert
 description: >
-  Configures Jira projects, workflows, boards, JQL, automation and dashboards, and
-  audits board, issue and workflow exports. Use when setting up or fixing Jira,
-  writing or debugging JQL, or designing automation rules.
+  Configures Jira projects, workflows, boards, JQL, automation and dashboards, and audits
+  board, issue and workflow exports. Use when setting up or fixing Jira, writing or
+  debugging JQL, or designing automation rules. Also use for project and program managers:
+  Jira workflows, JQL queries, boards, dashboards and automation. For example: "Write JQL
+  for all open bugs in projects PORTAL and API that have been in 'In Review' for more than 5
+  days."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.1

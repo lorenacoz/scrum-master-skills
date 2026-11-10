@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Scrum Master and project manager skills for Claude.",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
       "name": "project-manager-skills",
       "source": "./plugins/project-manager-skills",
       "description": "40 AI skills for project managers, by phase: start, plan, run delivery, monitor and report, communicate, launch and close, and work tools (Jira, Confluence, Notion, Linear).",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "lorenacoz",
         "url": "https://github.com/lorenacoz"
@@ -33,7 +33,7 @@
       "name": "scrum-master-skills",
       "source": "./plugins/scrum-master-skills",
       "description": "AI skills for Scrum Masters: every Scrum and SAFe event, facilitation, team conflict, risks, backlog, metrics and stakeholders.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "lorenacoz",
         "url": "https://github.com/lorenacoz"

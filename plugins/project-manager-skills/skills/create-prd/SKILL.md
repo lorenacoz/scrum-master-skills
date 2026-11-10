@@ -1,9 +1,12 @@
 ---
 name: create-prd
 description: >
-  Write an 8-section product requirements document, framing the problem
-  before the solution. Use when specifying a new product or a large feature
-  that needs engineering, design and business aligned on one document.
+  Write an 8-section product requirements document, framing the problem before the solution.
+  Use when specifying a new product or a large feature that needs engineering, design and
+  business aligned on one document. Also use for project and program managers: Write a
+  requirements document that frames the problem before the solution. For example: "Write a
+  PRD for automating our monthly vendor invoice approval, which today takes 3 days of email
+  back and forth."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.2

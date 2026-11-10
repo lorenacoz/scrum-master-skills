@@ -1,9 +1,12 @@
 ---
 name: wayfinder
 description: >
-  Chart work too big for one sprint as a map of decision tickets, resolve them in
-  dependency order, then turn answers into tracer-bullet tickets. Use when the route
-  is unclear, open questions block each other, or estimates swing wildly.
+  Chart work too big for one sprint as a map of decision tickets, resolve them in dependency
+  order, then turn answers into tracer-bullet tickets. Use when the route is unclear, open
+  questions block each other, or estimates swing wildly. Also use for project and program
+  managers: Work is too big or unclear for one sprint: map the open decisions, resolve them
+  in order, then create tickets. For example: "We need to add single sign-on to three
+  internal apps and nobody knows where to start. Map the decisions we need to make first."
 license: MIT + Commons Clause
 metadata:
   version: 1.0.0
