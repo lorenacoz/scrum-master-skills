@@ -60,6 +60,19 @@ other chat tools, and to pick skills, see [LIBRARY.md](LIBRARY.md).
 
 Start at [lab/LAB-GUIDE.md](lab/LAB-GUIDE.md).
 
+## Project Manager AI Playbook
+
+[`playbook/`](playbook/PM-PLAYBOOK.md) holds 40 skills for project managers,
+grouped by phase. It works with Microsoft Copilot, ChatGPT, Gemini or GitHub
+Copilot, with no Claude needed:
+
+- [`playbook/PM-PLAYBOOK.md`](playbook/PM-PLAYBOOK.md): read it on GitHub, with a link to every skill
+- [`playbook/pm-playbook.html`](playbook/pm-playbook.html): download it and open it in a browser. It works
+  offline, with copy and download buttons for every skill
+- `playbook/skills/`: each skill as one `.md` file (any AI) and a `.prompt.md` file (GitHub Copilot)
+
+Edit `playbook/pm-playbook.json`, then rebuild with `python3 tools/build_playbook.py`.
+
 ## Add your own skill
 
 ```bash
