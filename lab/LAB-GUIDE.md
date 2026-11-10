@@ -15,7 +15,7 @@ job your way. That's it. Everything else is optional.
 Install the Agile36 library in the tool you use at work. For Claude Code:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/dstevenson1981/scrum-master-skills/main/tools/install_library.py | python3 -
+curl -fsSL https://raw.githubusercontent.com/lorenacoz/scrum-master-skills/main/tools/install_library.py | python3 -
 ```
 
 Other tools: see "Install it" in `../LIBRARY.md`. Then run the "Try this"

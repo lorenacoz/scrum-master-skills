@@ -1,0 +1,21 @@
+{
+  "name": "project-manager-skills",
+  "version": "1.1.0",
+  "description": "40 AI skills for project managers, by phase: start, plan, run delivery, monitor and report, communicate, launch and close, and work tools (Jira, Confluence, Notion, Linear).",
+  "author": {
+    "name": "lorenacoz",
+    "url": "https://github.com/lorenacoz"
+  },
+  "homepage": "https://github.com/lorenacoz/scrum-master-skills",
+  "repository": "https://github.com/lorenacoz/scrum-master-skills",
+  "license": "SEE LICENSE IN LICENSES.md",
+  "keywords": [
+    "project-management",
+    "pmo",
+    "status-report",
+    "raid",
+    "launch",
+    "jira",
+    "confluence"
+  ]
+}

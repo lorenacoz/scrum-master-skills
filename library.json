@@ -1,6 +1,11 @@
 {
-  "about": "Agile36 Scrum Master skill library. Skills under skills/ ship in this repo; others download from their authors at the exact commit Agile36 reviewed.",
-  "kit_repo": "dstevenson1981/scrum-master-skills",
+  "about": "Scrum Master AI Skills Library. Skills under skills/ ship in this repo; others download from their authors at the exact commit that was reviewed.",
+  "kit_repo": "lorenacoz/scrum-master-skills",
+  "site": {
+    "title": "Scrum Master AI Skills Library",
+    "eyebrow": "Free · Open source · Works in any AI assistant",
+    "tagline": "Free AI skills for Scrum Masters: every Scrum and SAFe event, facilitation, team conflict, risks, backlog, metrics and stakeholders. Use them in Claude, GitHub Copilot, ChatGPT or any AI assistant."
+  },
   "skills": [
     {
       "install_name": "sprint-plan",

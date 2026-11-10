@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+/* Layout: one column. Header with search, "how to use at work", a phase strip, then one section per phase of skill cards.
+   Self-contained: no web fonts, no external scripts, works from a downloaded file. */
+:root {
+  --bg: #f5f7fb; --surface: #ffffff; --ink: #1c2945; --body: #45526a; --muted: #66728a;
+  --line: rgba(28, 41, 69, 0.13); --tint: rgba(28, 41, 69, 0.05);
+  --accent: #b45309; --accent-ink: #ffffff; --accent-soft: rgba(180, 83, 9, 0.10);
+  --ok: #0f766e; --ok-bg: rgba(15, 118, 110, 0.10); --warn: #9a3412; --warn-bg: rgba(154, 52, 18, 0.09);
+  --code-bg: #1c2945; --code-fg: #eef2f8;
+  --sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: Consolas, "SF Mono", Menlo, "Liberation Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1526; --surface: #151f35; --ink: #e9eef7; --body: #b8c2d4; --muted: #8b97ad;
+    --line: rgba(233, 238, 247, 0.13); --tint: rgba(233, 238, 247, 0.06);
+    --accent: #f59e0b; --accent-ink: #1c1203; --accent-soft: rgba(245, 158, 11, 0.14);
+    --ok: #5eead4; --ok-bg: rgba(94, 234, 212, 0.12); --warn: #fdba74; --warn-bg: rgba(253, 186, 116, 0.12);
+    --code-bg: #0a1020; --code-fg: #e9eef7; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1526; --surface: #151f35; --ink: #e9eef7; --body: #b8c2d4; --muted: #8b97ad;
+  --line: rgba(233, 238, 247, 0.13); --tint: rgba(233, 238, 247, 0.06);
+  --accent: #f59e0b; --accent-ink: #1c1203; --accent-soft: rgba(245, 158, 11, 0.14);
+  --ok: #5eead4; --ok-bg: rgba(94, 234, 212, 0.12); --warn: #fdba74; --warn-bg: rgba(253, 186, 116, 0.12);
+  --code-bg: #0a1020; --code-fg: #e9eef7; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--body); font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 40px 72px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 56px; }
+h1, h2, h3 { color: var(--ink); margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; font-weight: 650; }
+h2 { font-size: 1.5rem; line-height: 1.2; font-weight: 600; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+code { font-family: var(--mono); font-size: 0.88em; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font: 600 0.75rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+header { display: flex; flex-direction: column; gap: 16px; }
+header .lede { font-size: 1.12rem; max-width: 68ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 20px; font: 0.82rem var(--mono); color: var(--muted); }
+.facts b { color: var(--ink); }
+.search { display: block; max-width: 560px; }
+.search input { width: 100%; font: 1rem var(--sans); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 11px 14px; }
+section { display: flex; flex-direction: column; gap: 18px; }
+.head { display: flex; flex-direction: column; gap: 6px; max-width: 70ch; }
+.head p { color: var(--muted); }
+/* how to */
+.howto { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 16px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab { color: var(--body); background: var(--tint); border: 1px solid transparent; border-radius: 999px; padding: 5px 12px; font-size: 0.86rem; cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+.steps { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; }
+.rules { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; font-size: 0.93rem; }
+/* phase strip */
+.strip { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.strip a { display: flex; flex-direction: column; gap: 2px; padding: 12px 12px 14px; text-decoration: none; color: inherit; border-left: 1px solid var(--line); min-width: 0; }
+.strip a:first-child { border-left: 0; }
+.strip a:hover { background: var(--tint); }
+.strip .n { font: 0.7rem var(--mono); color: var(--muted); letter-spacing: 0.06em; }
+.strip .t { color: var(--ink); font-weight: 600; font-size: 0.93rem; line-height: 1.25; }
+.strip .c { font: 0.75rem var(--mono); color: var(--accent); }
+/* cards */
+.deck { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; align-items: start; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.name { font: 600 0.98rem var(--mono); color: var(--ink); overflow-wrap: anywhere; }
+.chip { font: 0.68rem var(--mono); letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+.chip.fit { color: var(--ok); background: var(--ok-bg); }
+.chip.big { color: var(--warn); background: var(--warn-bg); }
+.when { font-size: 0.95rem; }
+.try { background: var(--tint); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+.try-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.label { font: 0.68rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.try q { color: var(--ink); font-size: 0.9rem; quotes: "\201C" "\201D"; }
+.actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.btn { color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 7px; padding: 6px 11px; font-size: 0.84rem; cursor: pointer; text-decoration: none; line-height: 1.3; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.btn.done { border-color: var(--ok); color: var(--ok); background: var(--ok-bg); }
+.btn.small { padding: 3px 9px; font-size: 0.78rem; }
+.meta { font-size: 0.8rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; }
+details.read summary { cursor: pointer; font-size: 0.86rem; color: var(--accent); }
+.md { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 0.9rem; max-height: 480px; overflow: auto; overflow-wrap: anywhere; }
+.md h1, .md h2, .md h3, .md h4 { margin: 1em 0 0.4em; font-size: 1rem; }
+.md h1 { font-size: 1.15rem; }
+.md > :first-child { margin-top: 0; }
+.md p, .md ul, .md ol, .md pre, .md blockquote, .md .tbl { margin: 0 0 0.7em; }
+.md ul, .md ol { padding-left: 1.3em; }
+.md pre { background: var(--code-bg); color: var(--code-fg); padding: 10px 12px; border-radius: 8px; overflow-x: auto; font-size: 0.8rem; }
+.md :not(pre) > code { background: var(--tint); padding: 1px 4px; border-radius: 4px; color: var(--ink); }
+.md blockquote { border-left: 3px solid var(--accent); padding-left: 10px; color: var(--muted); margin-left: 0; }
+.md .tbl { overflow-x: auto; }
+.md table { border-collapse: collapse; font-size: 0.82rem; }
+.md th, .md td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; vertical-align: top; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 9px 16px; border-radius: 999px; font-size: 0.88rem; box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+.fallback { position: fixed; inset: auto 16px calc(16px + env(safe-area-inset-bottom, 0px)) 16px; max-width: 760px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.fallback textarea { width: 100%; height: 160px; font: 0.8rem var(--mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+.empty { color: var(--muted); }
+footer { font-size: 0.88rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; max-width: 75ch; }
+@media (max-width: 900px) {
+  .howto { grid-template-columns: minmax(0, 1fr); }
+  .strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .strip a:nth-child(5) { border-left: 0; }
+  .strip a:nth-child(n+5) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 560px) {
+  .wrap { padding-block: 28px 56px; gap: 44px; }
+  .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .strip a { border-left: 0; border-top: 1px solid var(--line); }
+  .strip a:nth-child(even) { border-left: 1px solid var(--line); }
+  .strip a:nth-child(-n+2) { border-top: 0; }
+  .deck { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media print { .actions, .search, .tabs, details.read { display: none; } .card { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Playbook · works with any AI assistant</span>
+    <h1 id="title"></h1>
+    <p class="lede" id="subtitle"></p>
+    <div class="facts" id="facts"></div>
+    <label class="search"><input id="q" type="search" placeholder="Search: risk, status report, launch, Jira, stakeholder…" aria-label="Search skills" autocomplete="off"></label>
+  </header>
+
+  <section aria-labelledby="how-h">
+    <div class="head"><span class="eyebrow">Before you start</span><h2 id="how-h">How to use a skill at work</h2>
+      <p>A skill is a set of instructions that turns a general AI assistant into a specialist for one job. Load it once at the start of a chat, then ask your question.</p></div>
+    <div class="howto">
+      <div class="panel">
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <ol class="steps" id="steps"></ol>
+        <p class="note" style="font-size:.88rem;color:var(--muted)" id="fitnote"></p>
+      </div>
+      <div class="panel"><h3>Ground rules</h3><ul class="rules" id="rules"></ul></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ph-h">
+    <div class="head"><span class="eyebrow">The project, phase by phase</span><h2 id="ph-h">Pick the phase you're in</h2></div>
+    <nav class="strip" id="strip" aria-label="Phases"></nav>
+  </section>
+
+  <div id="phases" style="display:flex;flex-direction:column;gap:48px"></div>
+  <p class="empty" id="empty" hidden>No skills match that search.</p>
+
+  <footer id="footer"></footer>
+</div>
+<script>
+const D = /*__DATA__*/null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const inline = s => esc(s)
+  .replace(/`([^`]+)`/g, "<code>$1</code>")
+  .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+  .replace(/(^|[^*])\*([^*\s][^*]*)\*/g, "$1<em>$2</em>")
+  .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+/* small Markdown renderer: headings, lists, tables, code, quotes, paragraphs */
+function md(text) {
+  const lines = text.replace(/\r/g, "").split("\n"); let out = [], i = 0;
+  while (i < lines.length) {
+    const l = lines[i];
+    if (/^```/.test(l)) { const buf = []; i++; while (i < lines.length && !/^```/.test(lines[i])) buf.push(lines[i++]); i++; out.push(`<pre>${esc(buf.join("\n"))}</pre>`); continue; }
+    const h = l.match(/^(#{1,6})\s+(.*)/); if (h) { const n = Math.min(h[1].length, 4); out.push(`<h${n}>${inline(h[2])}</h${n}>`); i++; continue; }
+    if (/^\s*\|/.test(l) && i + 1 < lines.length && /^\s*\|?\s*:?-{2,}/.test(lines[i + 1])) {
+      const row = r => r.trim().replace(/^\||\|$/g, "").split("|").map(c => c.trim());
+      const head = row(l); i += 2; const body = [];
+      while (i < lines.length && /^\s*\|/.test(lines[i])) body.push(row(lines[i++]));
+      out.push(`<div class="tbl"><table><thead><tr>${head.map(c => `<th>${inline(c)}</th>`).join("")}</tr></thead><tbody>${body.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`); continue;
+    }
+    if (/^\s*([-*]|\d+\.)\s+/.test(l)) {
+      const ordered = /^\s*\d+\./.test(l); const items = [];
+      while (i < lines.length && /^\s*([-*]|\d+\.)\s+/.test(lines[i])) { items.push(lines[i].replace(/^\s*([-*]|\d+\.)\s+/, "")); i++; while (i < lines.length && /^\s{2,}\S/.test(lines[i]) && !/^\s*([-*]|\d+\.)\s+/.test(lines[i])) items[items.length - 1] += " " + lines[i++].trim(); }
+      out.push(`<${ordered ? "ol" : "ul"}>${items.map(x => `<li>${inline(x)}</li>`).join("")}</${ordered ? "ol" : "ul"}>`); continue;
+    }
+    if (/^>\s?/.test(l)) { const buf = []; while (i < lines.length && /^>\s?/.test(lines[i])) buf.push(lines[i++].replace(/^>\s?/, "")); out.push(`<blockquote>${inline(buf.join(" "))}</blockquote>`); continue; }
+    if (/^\s*(---|\*\*\*)\s*$/.test(l) || !l.trim()) { i++; continue; }
+    const buf = []; while (i < lines.length && lines[i].trim() && !/^(#{1,6}\s|```|>|\s*([-*]|\d+\.)\s|\s*\|)/.test(lines[i])) buf.push(lines[i++]);
+    if (!buf.length) buf.push(lines[i++]);
+    out.push(`<p>${inline(buf.join(" "))}</p>`);
+  }
+  return out.join("");
+}
+
+/* copy + download that also work from a file opened on disk */
+let toastT;
+function toast(msg) { let t = document.querySelector(".toast"); if (!t) { t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); } t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2200); }
+function legacyCopy(text) { const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} ta.remove(); return ok; }
+function showFallback(text) {
+  let f = document.querySelector(".fallback");
+  if (!f) { f = document.createElement("div"); f.className = "fallback"; f.innerHTML = '<p>Your browser blocked copying. The text is selected: press <b>Ctrl+C</b> (⌘C on Mac).</p><textarea aria-label="Text to copy"></textarea><div><button class="btn small">Close</button></div>'; f.querySelector("button").onclick = () => f.hidden = true; document.body.appendChild(f); }
+  f.hidden = false; const ta = f.querySelector("textarea"); ta.value = text; ta.focus(); ta.select();
+}
+function copy(btn, text, label) {
+  const ok = () => { const old = btn.textContent; btn.textContent = "Copied ✓"; btn.classList.add("done"); toast(label + " copied. Paste it as your first message."); setTimeout(() => { btn.textContent = old; btn.classList.remove("done"); }, 1800); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, () => legacyCopy(text) ? ok() : showFallback(text));
+  else legacyCopy(text) ? ok() : showFallback(text);
+}
+function download(name, text) {
+  const url = URL.createObjectURL(new Blob([text], { type: "text/markdown;charset=utf-8" }));
+  const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1500); toast("Downloading " + name);
+}
+
+/* render */
+$("title").textContent = D.title; document.title = D.title; $("subtitle").textContent = D.subtitle;
+const fits = D.skills.filter(s => s.coreChars <= D.fit).length;
+$("facts").innerHTML = `<span><b>${D.skills.length}</b> skills</span><span><b>${D.stages.length}</b> phases</span><span>Copilot · ChatGPT · Gemini · GitHub Copilot</span><span>Works offline</span>`;
+$("tabs").innerHTML = D.howTo.map(([t], i) => `<button class="tab" role="tab" id="tab-${i}" aria-selected="${i === 0}">${esc(t)}</button>`).join("");
+const showTab = i => { D.howTo.forEach((_, j) => $("tab-" + j).setAttribute("aria-selected", i === j)); $("steps").innerHTML = D.howTo[i][1].map(s => `<li>${inline(s)}</li>`).join(""); };
+$("tabs").addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) showTab(+b.id.slice(4)); }); showTab(0);
+$("fitnote").innerHTML = `<b>Core or full?</b> <i>Copy full skill</i> gives everything, including reference material: best pasted as a first message or attached as a file. <i>Copy core</i> gives just the main instructions, sized for agent and custom GPT instruction boxes (often about ${D.fit.toLocaleString()} characters). A green chip means the core fits.`;
+$("rules").innerHTML = D.rules.map(r => `<li>${inline(r)}</li>`).join("");
+$("strip").innerHTML = D.stages.map((st, i) => `<a href="#${st.id}"><span class="n">${String(i + 1).padStart(2, "0")}</span><span class="t">${esc(st.name)}</span><span class="c">${D.skills.filter(s => s.stage === st.id).length} skills</span></a>`).join("");
+
+const card = (s, k) => `
+  <article class="card" data-k="${k}" data-hay="${esc([s.name, s.when, s.try, s.desc].join(" ").toLowerCase())}">
+    <div class="card-top"><span class="name">${esc(s.name)}</span>
+      <span class="chip ${s.coreChars <= D.fit ? "fit" : "big"}" title="Core instructions: ${s.coreChars.toLocaleString()} characters">${s.coreChars <= D.fit ? "core fits a box" : `core ${Math.round(s.coreChars / 1000)}k chars`}</span></div>
+    <p class="when">${esc(s.when)}</p>
+    <div class="try"><div class="try-top"><span class="label">Try this</span><button class="btn small" data-act="try">Copy</button></div><q>${esc(s.try)}</q></div>
+    <div class="actions">
+      <button class="btn primary" data-act="full">Copy full skill</button>
+      <button class="btn" data-act="core">Copy core</button>
+      <button class="btn" data-act="dl">Download .md</button>
+      <button class="btn" data-act="copilot">Copilot prompt file</button>
+    </div>
+    <div class="meta"><span>${esc(s.author)} · ${esc(s.license)}</span><a href="https://github.com/${D.repo}/blob/main/playbook/skills/${s.name}.md" target="_blank" rel="noopener">Open on GitHub</a><a href="${esc(s.source)}" target="_blank" rel="noopener">Original source</a></div>
+    <details class="read"><summary>Read the skill (${Math.round(s.fullChars / 1000)}k characters${s.refs ? `, ${s.refs} reference file${s.refs > 1 ? "s" : ""}` : ""})</summary><div class="md"></div></details>
+  </article>`;
+$("phases").innerHTML = D.stages.map((st, i) => `
+  <section id="${st.id}" class="phase" aria-labelledby="h-${st.id}">
+    <div class="head"><span class="eyebrow">Phase ${i + 1}</span><h2 id="h-${st.id}">${esc(st.name)}</h2><p>${esc(st.goal)}</p></div>
+    <div class="deck">${D.skills.map((s, k) => [s, k]).filter(([s]) => s.stage === st.id).map(([s, k]) => card(s, k)).join("")}</div>
+  </section>`).join("");
+
+$("phases").addEventListener("click", e => {
+  const b = e.target.closest("[data-act]"); if (!b) return;
+  const s = D.skills[+b.closest(".card").dataset.k];
+  if (b.dataset.act === "try") copy(b, s.try, "Prompt");
+  if (b.dataset.act === "full") copy(b, s.full, "Full skill");
+  if (b.dataset.act === "core") copy(b, s.core, "Core instructions");
+  if (b.dataset.act === "dl") download(`${s.name}.md`, s.full);
+  if (b.dataset.act === "copilot") download(`${s.name}.prompt.md`, s.copilot);
+});
+$("phases").addEventListener("toggle", e => {
+  const d = e.target; if (!d.open || d.dataset.done) return;
+  d.querySelector(".md").innerHTML = md(D.skills[+d.closest(".card").dataset.k].full); d.dataset.done = 1;
+}, true);
+$("q").addEventListener("input", e => {
+  const words = e.target.value.toLowerCase().split(/\s+/).filter(Boolean); let shown = 0;
+  document.querySelectorAll(".phase").forEach(p => { let n = 0;
+    p.querySelectorAll(".card").forEach(c => { const ok = words.every(w => c.dataset.hay.includes(w)); c.hidden = !ok; if (ok) n++; });
+    p.hidden = n === 0; shown += n; });
+  $("empty").hidden = shown > 0;
+});
+$("footer").innerHTML = `<p>Each skill belongs to its author and keeps its license, shown on its card. Skills by borghei/Claude-Skills are MIT + Commons Clause: use, copy and adapt them, but don't sell them. Full texts: <a href="https://github.com/${D.repo}/blob/main/playbook/LICENSES.md" target="_blank" rel="noopener">LICENSES.md</a>.</p><p>Source and updates: <a href="https://github.com/${D.repo}/tree/main/playbook" target="_blank" rel="noopener">github.com/${D.repo}/playbook</a></p>`;
+</script>
+</body>
+</html>

@@ -1,6 +1,8 @@
-# Agile36 Scrum Master Skill Library
+# Scrum Master AI Skills Library
 
-40 skills for the jobs a Scrum Master does every sprint, plus 4 optional ones. Every Scrum event and SAFe event has its own skill. Each one is pinned to the exact version Agile36 reviewed.
+Free AI skills for Scrum Masters: every Scrum and SAFe event, facilitation, team conflict, risks, backlog, metrics and stakeholders. Use them in Claude, GitHub Copilot, ChatGPT or any AI assistant.
+
+40 skills for the jobs a Scrum Master does every sprint, plus 4 optional ones. Every Scrum event and SAFe event has its own skill. Each one is pinned to the exact version that was reviewed.
 
 ## Scrum events
 
@@ -107,7 +109,7 @@
 Nothing to download first. In a terminal:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/dstevenson1981/scrum-master-skills/main/tools/install_library.py | python3 -
+curl -fsSL https://raw.githubusercontent.com/lorenacoz/scrum-master-skills/main/tools/install_library.py | python3 -
 ```
 
 That installs all core skills into Claude Code. Add options after `python3 -`:
@@ -182,7 +184,7 @@ Use a made-up team. Never paste real names or company data into a class exercise
 
 ## Sources and credit
 
-Skills marked *Agile36* were written for this class. Skills from MIT-licensed repos are copied here with their license file (see `THIRD_PARTY_NOTICES.md`). All others download from their author's repo at install time and are not re-hosted here.
+Skills credited to *Agile36* were written by Agile36 for their Scrum Master class. Skills from MIT-licensed repos are copied here with their license file (see `THIRD_PARTY_NOTICES.md`). All others download from their author's repo at install time and are not re-hosted here.
 
 | Skill | Author | License | Where it comes from |
 |---|---|---|---|
